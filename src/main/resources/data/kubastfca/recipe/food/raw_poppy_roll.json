@@ -40,17 +40,6 @@
           "type": "tfc:not_rotten"
         }
       ]
-    },
-    {
-      "type": "tfc:and",
-      "children": [
-        {
-          "tag": "c:foods/flour"
-        },
-        {
-          "type": "tfc:not_rotten"
-        }
-      ]
     }
   ,
     {
