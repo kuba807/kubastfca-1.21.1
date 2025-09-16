@@ -7,8 +7,27 @@ def modelitem(name):
     "layer0": "kubastfca:item/foods/"+name
   }
 }
-    with open("../src\main/resources/assets/kubastfca/models/item/"+name+'.json', 'w') as file:
+    with open("../src/main/resources/assets/kubastfca/models/item/"+name+'.json', 'w') as file:
         json.dump(data, file)
+
+def modelJar(name,block):
+  data = {
+    "parent": "item/generated",
+    "textures": {
+      "layer0": "kubastfca:item/foods/jar/" + name
+    }
+  }
+
+
+  with open("../src/main/resources/assets/kubastfca/models/item/jar/" + name + '.json', 'w') as file:
+    json.dump(data, file)
+  {
+    "parent": "tfc:block/jar",
+    "textures": {
+      "1": "tfc:block/jar/"+block
+    }
+  }
+
 
 def simplefood(name,hunger=4,decay=1,sat=4,grain=0,fruit=0,prot=0,veg=0,dairy=0):
     modelitem(name)
@@ -30,6 +49,10 @@ def simplefood(name,hunger=4,decay=1,sat=4,grain=0,fruit=0,prot=0,veg=0,dairy=0)
     with open("../src/main/resources/data/kubastfca/tfc/food/" + name + '.json', 'w') as file:
         json.dump(data, file)
 
+def wek(name,block,fruit=0,grain=0,protein=0,veg=0):
+  modelJar(name,block)
+
+wek("meat_wek","peach")
 simplefood("pemmican",4,0.1,2,prot=1.8,fruit=0.2)
 simplefood("cooked_pasta",4,decay=2.5,sat=5,grain=0.5)
 simplefood("raw_pasta",2,decay=0.1)
