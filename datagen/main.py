@@ -4,7 +4,7 @@ def modelitem(name):
     data = {
   "parent": "item/generated",
   "textures": {
-    "layer0": "kubastfca:item/"+name
+    "layer0": "kubastfca:item/foods/"+name
   }
 }
     with open("../src\main/resources/assets/kubastfca/models/item/"+name+'.json', 'w') as file:
@@ -33,6 +33,8 @@ def simplefood(name,hunger=4,decay=1,sat=4,grain=0,fruit=0,prot=0,veg=0,dairy=0)
 simplefood("pemmican",4,0.1,2,prot=1.8,fruit=0.2)
 simplefood("cooked_pasta",4,decay=2.5,sat=5,grain=0.5)
 simplefood("raw_pasta",2,decay=0.1)
+simplefood("raw_poppy_roll",2,decay=4)
+simplefood("cooked_poppy_roll",5,decay=0.3,sat=2,grain=1.4,fruit=0.2)
 
 def boilingrecipe(input,output,influid="minecraft:water",temp=300):
     data = {

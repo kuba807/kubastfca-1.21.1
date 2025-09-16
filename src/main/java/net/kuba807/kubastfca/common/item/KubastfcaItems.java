@@ -27,4 +27,11 @@ public class KubastfcaItems {
             "raw_pasta", new Item.Properties().food(new FoodProperties.Builder()
                     .nutrition(1).saturationModifier(2f).effect(() -> new MobEffectInstance(MobEffects.POISON, 100),0.8f).build()));
 
+    public static final DeferredItem<Item> RAW_POPPY_ROLL= ITEMS.registerSimpleItem(
+            "raw_poppy_roll", new Item.Properties().food(new FoodProperties.Builder()
+                    .nutrition(1).saturationModifier(2f).effect(() -> new MobEffectInstance(MobEffects.POISON, 100),0.8f).build()));
+    public static final DeferredItem<Item> COOKED_POPPY_ROLL= ITEMS.registerSimpleItem(
+            "cooked_poppy_roll", new Item.Properties().food(new FoodProperties.Builder()
+                    .nutrition(1).saturationModifier(2f).build()));
+
 }
