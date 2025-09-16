@@ -31,10 +31,10 @@ def modelJar(name,block):
     json.dump(data, file)
 
 
-def simplefood(name,hunger=4,decay=1,sat=4,grain=0,fruit=0,prot=0,veg=0,dairy=0):
-    modelitem(name)
-    foods.append(name)
-    data = {
+
+
+def fooddata(name,hunger,decay,sat,grain,fruit,prot,veg,dairy):
+  data = {
   "ingredient": {
     "item": "kubastfca:"+name
   },
@@ -48,16 +48,24 @@ def simplefood(name,hunger=4,decay=1,sat=4,grain=0,fruit=0,prot=0,veg=0,dairy=0)
   "dairy": dairy
 
 }
-    with open("../src/main/resources/data/kubastfca/tfc/food/" + name + '.json', 'w') as file:
+  with open("../src/main/resources/data/kubastfca/tfc/food/" + name + '.json', 'w') as file:
         json.dump(data, file)
 
-def wek(name,block,fruit=0,grain=0,protein=0,veg=0):
+def simplefood(name, hunger=4, decay=1, sat=4, grain=0, fruit=0, prot=0, veg=0, dairy=0):
+    modelitem(name)
+    foods.append(name)
+    fooddata(name, hunger, decay, sat, grain, fruit, prot, veg, dairy)
+
+sloik=[]
+def wek(name,block,fruit=0,grain=0,protein=0,veg=0,dairy=0):
   modelJar(name,block)
   modelJar(name+"_unsealed",block)
+  fooddata("jar/"+name+"_unsealed",4,4,2,fruit=fruit,grain=grain,prot=protein,veg=veg,dairy=dairy)
+  sloik.append(name)
 
-wek("meat","peach")
-wek("mix","peach")
-wek("veggie","peach")
+wek("meat","peach",protein=1)
+wek("mix","peach",protein=0.8,veg=0.4)
+wek("veggie","peach",veg=1,protein=0.2)
 simplefood("pemmican",4,0.1,2,prot=1.8,fruit=0.2)
 simplefood("cooked_pasta",4,decay=2.5,sat=5,grain=0.5)
 simplefood("raw_pasta",2,decay=0.1)
@@ -376,6 +384,27 @@ def boilingrecipe(input,output,influid="minecraft:water",temp=300):
 
 boilingrecipe("raw_pasta","cooked_pasta",influid="tfc:salt_water")
 
+
+
+sloiki=[]
+for i in sloik:
+  sloiki.append("kubastfca:jar/"+i)
+  data = {
+    "replace": False,
+    "values": sloiki
+  }
+  with open("../src/main/resources/data/tfc/tags/item/foods/sealed_preserves.json", 'w') as file:
+    json.dump(data, file)
+
+sloiki=[]
+for i in sloik:
+  sloiki.append("kubastfca:jar/"+i+"_unsealed")
+  data = {
+    "replace": False,
+    "values": sloiki
+  }
+  with open("../src/main/resources/data/tfc/tags/item/foods/jars.json", 'w') as file:
+    json.dump(data, file)
 
 food=[]
 for i in foods:
