@@ -32,8 +32,12 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.dries007.tfc.common.items.TFCItems;
 
+
+import static net.dries007.tfc.common.items.TFCItems.EMPTY_JAR;
 import static net.kuba807.kubastfca.kubastfca.MODID;
+
 
 public class KubastfcaItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
@@ -45,6 +49,9 @@ public class KubastfcaItems {
             "pemmican", new Item.Properties().food(new FoodProperties.Builder()
                     .nutrition(1).saturationModifier(2f).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 100),0.03f).build()));
     // The properties to use.
+    public static final DeferredItem<Item> DIRTY_JAR= ITEMS.registerSimpleItem(
+            "jar/dirty_jar", new Item.Properties());
+
     public static final DeferredItem<Item> COOKED_PASTA= ITEMS.registerSimpleItem(
             "cooked_pasta", new Item.Properties().food(new FoodProperties.Builder()
                     .nutrition(1).saturationModifier(2f).build()));
@@ -61,13 +68,13 @@ public class KubastfcaItems {
 
   public static final DeferredItem<Item> MEAT_WEK= ITEMS.register("jar/meat", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
 
-  public static final DeferredItem<Item> UNSEALED_MEAT_WEK= ITEMS.register("jar/meat_unsealed", () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));
+  public static final DeferredItem<Item> UNSEALED_MEAT_WEK= ITEMS.register("jar/meat_unsealed", () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(DIRTY_JAR.asItem())));
 
- //  public static final DeferredItem<Item> MIX_WEK= ITEMS.register("jar/mix", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
- //  public static final DeferredItem<Item> UNSEALED_MIX_WEK= ITEMS.register("jar/mix_unsealed", () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));
+  public static final DeferredItem<Item> MIX_WEK= ITEMS.register("jar/mix", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
+  public static final DeferredItem<Item> UNSEALED_MIX_WEK= ITEMS.register("jar/mix_unsealed", () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(DIRTY_JAR.asItem())));
 
- //  public static final DeferredItem<Item> VEGGIE_WEK= ITEMS.register("jar/veggie", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
- //  public static final DeferredItem<Item> UNSEALED_VEGGIE_WEK= ITEMS.register("jar/veggie_unsealed", () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(TFCItems.EMPTY_JAR.asItem())));
+  public static final DeferredItem<Item> VEGGIE_WEK= ITEMS.register("jar/veggie", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
+  public static final DeferredItem<Item> UNSEALED_VEGGIE_WEK= ITEMS.register("jar/veggie_unsealed", () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(DIRTY_JAR.asItem())));
 
 
 }

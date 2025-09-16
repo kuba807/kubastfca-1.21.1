@@ -27,6 +27,8 @@ def modelJar(name,block):
       "1": "tfc:block/jar/"+block
     }
   }
+  with open("../src/main/resources/assets/kubastfca/models/block/jar/" + name + '.json', 'w') as file:
+    json.dump(data, file)
 
 
 def simplefood(name,hunger=4,decay=1,sat=4,grain=0,fruit=0,prot=0,veg=0,dairy=0):
@@ -54,6 +56,8 @@ def wek(name,block,fruit=0,grain=0,protein=0,veg=0):
   modelJar(name+"_unsealed",block)
 
 wek("meat","peach")
+wek("mix","peach")
+wek("veggie","peach")
 simplefood("pemmican",4,0.1,2,prot=1.8,fruit=0.2)
 simplefood("cooked_pasta",4,decay=2.5,sat=5,grain=0.5)
 simplefood("raw_pasta",2,decay=0.1)
