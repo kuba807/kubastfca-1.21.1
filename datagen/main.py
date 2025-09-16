@@ -51,8 +51,9 @@ def simplefood(name,hunger=4,decay=1,sat=4,grain=0,fruit=0,prot=0,veg=0,dairy=0)
 
 def wek(name,block,fruit=0,grain=0,protein=0,veg=0):
   modelJar(name,block)
+  modelJar(name+"_unsealed",block)
 
-wek("meat_wek","peach")
+wek("meat","peach")
 simplefood("pemmican",4,0.1,2,prot=1.8,fruit=0.2)
 simplefood("cooked_pasta",4,decay=2.5,sat=5,grain=0.5)
 simplefood("raw_pasta",2,decay=0.1)
