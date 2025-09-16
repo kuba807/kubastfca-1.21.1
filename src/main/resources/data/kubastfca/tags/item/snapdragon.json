@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tfc:plant/snapdragon_white",
+    "tfc:plant/snapdragon_pink",
+    "tfc:plant/snapdragon_yellow",
+    "tfc:plant/snapdragon_pink"
+  ]
+}

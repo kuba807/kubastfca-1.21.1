@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "kubastfca:jar/meat_wek",
+    "kubastfca:jar/meat_wek_unsealed",
+    "kubastfca:jar/veggie_wek",
+    "kubastfca:jar/veggie_wek_unsealed",
+    "kubastfca:jar/mix_wek",
+    "kubastfca:jar/mix_wek_unsealed"
+
+  ]
+}

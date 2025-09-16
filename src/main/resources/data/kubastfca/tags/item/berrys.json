@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "tfc:food/snowberry",
+    "tfc:food/raspberry",
+    "tfc:food/gooseberry",
+    "tfc:food/elderberry",
+    "tfc:food/blueberry",
+    "tfc:food/bunchberry",
+    "tfc:food/cloudberry",
+    "tfc:food/cranberry",
+    "tfc:food/wintergreen_berry",
+    "tfc:food/blackberry",
+    "tfc:food/snowberry",
+    "tfc:food/strawberry"
+  ]
+}

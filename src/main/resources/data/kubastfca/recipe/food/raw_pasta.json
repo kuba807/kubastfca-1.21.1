@@ -1,0 +1,86 @@
+{
+  "type": "tfc:advanced_shapeless_crafting",
+  "ingredients": [
+    {
+      "type": "tfc:fluid_content",
+      "fluid": {
+        "amount": 100,
+        "fluid": "minecraft:water"
+      }
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "c:foods/flour"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "c:foods/flour"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "c:foods/flour"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "c:foods/flour"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ,
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "minecraft:egg"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "primary_ingredient": {
+    "type": "tfc:fluid_content",
+    "fluid": {
+      "amount": 100,
+      "fluid": "minecraft:water"
+    }
+  },
+  "result": {
+    "modifiers": [
+      {
+        "type": "tfc:copy_oldest_food"
+      }
+    ],
+    "stack": {
+      "count": 4,
+      "id": "kubastfca:raw_pasta"
+    }
+  }
+}
