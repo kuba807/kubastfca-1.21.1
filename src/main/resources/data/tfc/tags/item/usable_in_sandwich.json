@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "kubastfca:jar/meat_unsealed",
+    "kubastfca:jar/veggie_unsealed",
+    "kubastfca:jar/mix_unsealed"
+
+  ]
+}
