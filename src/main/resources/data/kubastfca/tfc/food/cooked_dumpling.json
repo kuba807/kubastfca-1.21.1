@@ -1,0 +1,6 @@
+{
+  "ingredient": {
+    "item": "kubastfca:cooked_dumpling"
+  },"type": "dynamic_bowl",
+  "decay_modifier":1
+}

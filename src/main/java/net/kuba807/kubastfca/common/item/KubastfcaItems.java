@@ -57,21 +57,28 @@ public class KubastfcaItems {
                     .nutrition(1).saturationModifier(2f).build()));
     public static final DeferredItem<Item> RAW_PASTA= ITEMS.registerSimpleItem(
             "raw_pasta", new Item.Properties().food(new FoodProperties.Builder()
-                    .nutrition(1).saturationModifier(2f).effect(() -> new MobEffectInstance(MobEffects.POISON, 100),0.8f).build()));
+                    .nutrition(1).saturationModifier(2f).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 100),0.1f).build()));
+
+    public static final DeferredItem<Item> COOKED_DUMPLING= ITEMS.registerSimpleItem(
+            "cooked_dumpling", new Item.Properties().food(new FoodProperties.Builder()
+                    .nutrition(1).saturationModifier(2f).build()));
+    public static final DeferredItem<Item> RAW_DUMPLING= ITEMS.registerSimpleItem(
+            "raw_dumpling", new Item.Properties().food(new FoodProperties.Builder()
+                    .nutrition(1).saturationModifier(2f).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 100),0.1f).build()));
 
     public static final DeferredItem<Item> RAW_POPPY_ROLL= ITEMS.registerSimpleItem(
             "raw_poppy_roll", new Item.Properties().food(new FoodProperties.Builder()
-                    .nutrition(1).saturationModifier(2f).effect(() -> new MobEffectInstance(MobEffects.POISON, 100),0.8f).build()));
+                    .nutrition(1).saturationModifier(2f).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 100),0.1f).build()));
     public static final DeferredItem<Item> COOKED_POPPY_ROLL= ITEMS.registerSimpleItem(
             "cooked_poppy_roll", new Item.Properties().food(new FoodProperties.Builder()
                     .nutrition(1).saturationModifier(2f).build()));
 
   public static final DeferredItem<Item> MEAT_WEK= ITEMS.register("jar/meat", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
 
-  public static final DeferredItem<Item> UNSEALED_MEAT_WEK= ITEMS.registerItem("jar/meat_unsealed",Item::new, new Item.Properties().component(Lore.TYPE, Lore.UNSEALED));
+  public static final DeferredItem<Item> UNSEALED_MEAT_WEK= ITEMS.registerItem("jar/meat_unsealed",Item::new, new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(Items.BUCKET.asItem()));
 
   public static final DeferredItem<Item> MIX_WEK= ITEMS.register("jar/mix", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
-  public static final DeferredItem<Item> UNSEALED_MIX_WEK= ITEMS.register("jar/mix_unsealed", () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(DIRTY_JAR.asItem())));
+  public static final DeferredItem<Item> UNSEALED_MIX_WEK= ITEMS.register("jar/mix_unsealed", () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(KubastfcaItems.DIRTY_JAR.asItem())));
 
   public static final DeferredItem<Item> VEGGIE_WEK= ITEMS.register("jar/veggie", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
   public static final DeferredItem<Item> UNSEALED_VEGGIE_WEK= ITEMS.register("jar/veggie_unsealed", () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(DIRTY_JAR.asItem())));

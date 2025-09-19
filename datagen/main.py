@@ -71,7 +71,9 @@ simplefood("cooked_pasta",4,decay=2.5,sat=5,grain=0.5)
 simplefood("raw_pasta",2,decay=0.1)
 simplefood("raw_poppy_roll",2,decay=4)
 simplefood("cooked_poppy_roll",5,decay=0.3,sat=2,grain=1.4,fruit=0.2)
-
+simplefood("raw_dumpling",2,decay=4)
+modelitem("cooked_dumpling")
+foods.append("cooked_dumpling")
 def boilingrecipe(input,output,influid="minecraft:water",temp=300):
     data = {
   "type": "tfc:pot",
