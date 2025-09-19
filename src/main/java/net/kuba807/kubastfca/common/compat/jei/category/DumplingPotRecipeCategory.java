@@ -1,6 +1,7 @@
 package net.kuba807.kubastfca.common.compat.jei.category;
 
 import mezz.jei.api.recipe.RecipeType;
+import net.dries007.tfc.compat.jei.JEIIntegration;
 import net.kuba807.kubastfca.common.item.KubastfcaItems;
 import net.dries007.tfc.compat.jei.category.PotRecipeCategory;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -34,6 +35,11 @@ public class DumplingPotRecipeCategory extends PotRecipeCategory<PotRecipe> {
                 i++;
             }
         }
+
+        IRecipeSlotBuilder inputFluid = builder.addSlot(RecipeIngredientRole.INPUT, 46, 26);
+        inputFluid.addIngredients(JEIIntegration.FLUID_STACK, collapse(recipe.getFluidIngredient()));
+        inputFluid.setFluidRenderer(1, false, 16, 16);
+        inputFluid.setBackground(slot, -1, -1);
 
         int ingredientCount = 0;
         for (Ingredient ingredient : recipe.getItemIngredients())
