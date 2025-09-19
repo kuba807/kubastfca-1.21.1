@@ -2,8 +2,7 @@
   "replace": false,
   "values": [
     "tfc:tallow",
-    "tfc:olive_oil",
-    "kubastfca:sunflower_oil"
+    "tfc:olive_oil"
 
   ]
 }

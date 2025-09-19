@@ -1,0 +1,44 @@
+{
+  "type": "kubastfca:dumpling_pot",
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "kubastfca:raw_dumpling"
+      }
+    },
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "kubastfca:raw_dumpling"
+      }
+    }
+  ,
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "kubastfca:raw_dumpling"
+      }
+    }
+  ,
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "kubastfca:raw_dumpling"
+      }
+    }
+  ,
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "kubastfca:raw_dumpling"
+      }
+    }
+  ],
+  "fluid_ingredient": {
+    "fluid": "tfc:salt_water",
+    "amount": 100
+  },
+  "duration": 600,
+  "temperature": 300
+}

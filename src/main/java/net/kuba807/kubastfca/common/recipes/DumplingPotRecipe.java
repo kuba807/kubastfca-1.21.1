@@ -6,6 +6,7 @@ import com.mojang.serialization.MapCodec;
 import net.dries007.tfc.common.recipes.PotRecipe;
 import net.dries007.tfc.common.recipes.SoupPotRecipe;
 import net.dries007.tfc.common.recipes.TFCRecipeSerializers;
+import net.kuba807.kubastfca.common.item.KubastfcaItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -84,23 +85,16 @@ public class DumplingPotRecipe extends PotRecipe
         }
         if (ingredientCount > 0)
         {
-            float multiplier = 1 - (0.05f * ingredientCount); // per-serving multiplier of nutrition
-            water *= multiplier; saturation *= multiplier;
-            Nutrient maxNutrient = Nutrient.GRAIN; // determines what item you get. this is a default
+            water /= ingredientCount; saturation =(saturation/ ingredientCount)+1;
             float maxNutrientValue = 0;
+            nutrition[0]=nutrition[0]+ingredientCount;
             for (Nutrient nutrient : Nutrient.VALUES)
             {
                 final int idx = nutrient.ordinal();
-                nutrition[idx] *= multiplier;
-                if (nutrition[idx] > maxNutrientValue)
-                {
-                    maxNutrientValue = nutrition[idx];
-                    maxNutrient = nutrient;
-                }
+                nutrition[idx] /= ingredientCount;
             }
 
-            soupStack = new ItemStack(TFCItems.SOUPS.get(maxNutrient).get(), (int) (ingredientCount / 2f) + 1);
-            soupStack.set(TFCComponents.INGREDIENTS, ItemListComponent.of(itemIngredients));
+            soupStack = new ItemStack(KubastfcaItems.COOKED_DUMPLING.get(), (int) ingredientCount);
             FoodCapability.setFoodForDynamicItemOnCreate(
                     soupStack,
                     new FoodData(SOUP_HUNGER_VALUE, water, saturation, 0, nutrition, SOUP_DECAY_MODIFIER));
@@ -112,7 +106,7 @@ public class DumplingPotRecipe extends PotRecipe
     @Override
     public RecipeSerializer<?> getSerializer()
     {
-        return TFCRecipeSerializers.POT_SOUP.get();
+        return KubaRecipeSerializers.DUMPLING_POT.get();
     }
 
     public record SoupOutput(ItemStack stack) implements PotOutput
@@ -126,9 +120,11 @@ public class DumplingPotRecipe extends PotRecipe
         @Override
         public ItemInteractionResult onInteract(PotBlockEntity entity, Player player, ItemStack clickedWith)
         {
-
+            if ( !stack.isEmpty())
+            {
                 ItemHandlerHelper.giveItemToPlayer(player, stack.split(1));
                 return ItemInteractionResult.sidedSuccess(player.level().isClientSide);
+        } return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
         @Override

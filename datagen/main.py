@@ -66,7 +66,7 @@ def wek(name,block,fruit=0,grain=0,protein=0,veg=0,dairy=0):
 wek("meat","peach",protein=1)
 wek("mix","peach",protein=0.8,veg=0.4)
 wek("veggie","peach",veg=1,protein=0.2)
-simplefood("pemmican",4,0.1,2,prot=1.8,fruit=0.2)
+simplefood("pemmican",2,0.1,2,prot=1.8,fruit=0.2)
 simplefood("cooked_pasta",4,decay=2.5,sat=5,grain=0.5)
 simplefood("raw_pasta",2,decay=0.1)
 simplefood("raw_poppy_roll",2,decay=4)
