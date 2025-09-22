@@ -2,6 +2,10 @@ package net.kuba807.kubastfca.common.item;
 
 import net.dries007.tfc.common.Lore;
 import net.dries007.tfc.common.items.TFCItems;
+import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.registry.RegistryHolder;
+import net.kuba807.kubastfca.common.block.KubaBlocks;
+import net.kuba807.kubastfca.common.block.crop.Crop;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -32,7 +36,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.dries007.tfc.common.items.TFCItems;
+import net.dries007.tfc.common.items.*;
 
 
 import static net.dries007.tfc.common.items.TFCItems.EMPTY_JAR;
@@ -74,8 +78,7 @@ public class KubastfcaItems {
                     .nutrition(1).saturationModifier(2f).build()));
 
   public static final DeferredItem<Item> MEAT_WEK= ITEMS.register("jar/meat", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
-
-  public static final DeferredItem<Item> UNSEALED_MEAT_WEK= ITEMS.registerItem("jar/meat_unsealed",Item::new, new Item.Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(Items.BUCKET.asItem()));
+  public static final DeferredItem<Item> UNSEALED_MEAT_WEK= ITEMS.register("jar/meat_unsealed",  () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(KubastfcaItems.DIRTY_JAR.asItem()).stacksTo(1)));
 
   public static final DeferredItem<Item> MIX_WEK= ITEMS.register("jar/mix", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
   public static final DeferredItem<Item> UNSEALED_MIX_WEK= ITEMS.register("jar/mix_unsealed", () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(KubastfcaItems.DIRTY_JAR.asItem())));
@@ -83,5 +86,33 @@ public class KubastfcaItems {
   public static final DeferredItem<Item> VEGGIE_WEK= ITEMS.register("jar/veggie", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
   public static final DeferredItem<Item> UNSEALED_VEGGIE_WEK= ITEMS.register("jar/veggie_unsealed", () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(DIRTY_JAR.asItem())));
 
+
+    public static final Map<Crop, Object> CROP_SEEDS = Helpers.mapOf(Crop.class, crop ->
+            register("seeds/" + crop.name(), () -> new ItemNameBlockItem(KubaBlocks.CROPS.get(crop).get(), new Properties()))
+    );
+
+    private static ItemId register(String name)
+    {
+        return register(name, () -> new Item(new Properties()));
+    }
+
+    private static ItemId register(String name, Properties properties)
+    {
+        return new ItemId(ITEMS.register(name.toLowerCase(Locale.ROOT), () -> new Item(properties)));
+    }
+
+    private static ItemId register(String name, Supplier<Item> item)
+    {
+        return new ItemId(ITEMS.register(name.toLowerCase(Locale.ROOT), item));
+    }
+
+    public record ItemId(DeferredHolder<Item, Item> holder) implements RegistryHolder<Item, Item>, ItemLike
+    {
+        @Override
+        public Item asItem()
+        {
+            return get();
+        }
+    }
 
 }

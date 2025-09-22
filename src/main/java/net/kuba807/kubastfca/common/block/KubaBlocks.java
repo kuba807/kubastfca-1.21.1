@@ -1,0 +1,113 @@
+package net.kuba807.kubastfca.common.block;
+
+
+import net.dries007.tfc.common.blocks.TFCBlocks;
+import net.kuba807.kubastfca.common.block.crop.Crop;
+
+import net.dries007.tfc.util.Helpers;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+
+import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import org.jetbrains.annotations.Nullable;
+
+import net.dries007.tfc.common.TFCTags;
+
+import net.dries007.tfc.common.fluids.IFluidLoggable;
+import net.dries007.tfc.common.items.TFCItems;
+import net.dries007.tfc.util.registry.RegistrationHelpers;
+import net.dries007.tfc.util.registry.RegistryHolder;
+
+public class KubaBlocks {
+
+    public static final Map<Crop, Id<Block>> CROPS = Helpers.mapOf(Crop.class, crop ->
+            registerNoItem("crop/" + crop.name(), crop::create)
+    );
+
+    public static final Map<Crop, Id<Block>> DEAD_CROPS = Helpers.mapOf(Crop.class, crop ->
+            registerNoItem("dead_crop/" + crop.name(), crop::createDead)
+    );
+
+    public static final Map<Crop, Id<Block>> WILD_CROPS = Helpers.mapOf(Crop.class, crop ->
+            register("wild_crop/" + crop.name(), crop::createWild)
+    );
+
+
+    public static boolean always(BlockState state, BlockGetter level, BlockPos pos)
+    {
+        return true;
+    }
+
+    public static boolean never(BlockState state, BlockGetter level, BlockPos pos)
+    {
+        return false;
+    }
+
+    public static boolean neverEntity(BlockState state, BlockGetter world, BlockPos pos, EntityType<?> type)
+    {
+        return false;
+    }
+
+    public static boolean onlyColdMobs(BlockState state, BlockGetter world, BlockPos pos, EntityType<?> type)
+    {
+        return Helpers.isEntity(type, TFCTags.Entities.SPAWNS_ON_COLD_BLOCKS);
+    }
+
+    public static ToIntFunction<BlockState> alwaysLit()
+    {
+        return s -> 15;
+    }
+
+    public static ToIntFunction<BlockState> lavaLoggedBlockEmission()
+    {
+        return state -> state.getValue(((IFluidLoggable) state.getBlock()).getFluidProperty()).is(Fluids.LAVA) ? 15 : 0;
+    }
+
+    public static ToIntFunction<BlockState> litBlockEmission(int lightValue)
+    {
+        return state -> state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
+    }
+
+
+    private static <T extends Block> Id<T> registerNoItem(String name, Supplier<T> blockSupplier)
+    {
+        return register(name, blockSupplier, (Function<T, ? extends BlockItem>) null);
+    }
+
+    private static <T extends Block> Id<T> register(String name, Supplier<T> blockSupplier)
+    {
+        return register(name, blockSupplier, block -> new BlockItem(block, new Item.Properties()));
+    }
+
+    private static <T extends Block> Id<T> register(String name, Supplier<T> blockSupplier, Item.Properties blockItemProperties)
+    {
+        return register(name, blockSupplier, block -> new BlockItem(block, blockItemProperties));
+    }
+
+    private static <T extends Block> Id<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory)
+    {
+        return new Id<>(RegistrationHelpers.registerBlock(TFCBlocks.BLOCKS, TFCItems.ITEMS, name, blockSupplier, blockItemFactory));
+    }
+
+
+    public record Id<T extends Block>(DeferredHolder<Block, T> holder) implements RegistryHolder<Block, T>, ItemLike
+    {
+        @Override
+        public Item asItem()
+        {
+            return get().asItem();
+        }
+    }
+}
