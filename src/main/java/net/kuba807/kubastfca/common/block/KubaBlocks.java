@@ -4,7 +4,10 @@ package net.kuba807.kubastfca.common.block;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.kuba807.kubastfca.common.block.crop.Crop;
 
+
 import net.dries007.tfc.util.Helpers;
+import net.kuba807.kubastfca.common.item.KubastfcaItems;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 
@@ -21,16 +24,19 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
 
-import net.dries007.tfc.common.TFCTags;
 
 import net.dries007.tfc.common.fluids.IFluidLoggable;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 import net.dries007.tfc.util.registry.RegistryHolder;
 
+import static net.kuba807.kubastfca.kubastfca.MODID;
+
 public class KubaBlocks {
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, MODID);
 
     public static final Map<Crop, Id<Block>> CROPS = Helpers.mapOf(Crop.class, crop ->
             registerNoItem("crop/" + crop.name(), crop::create)
@@ -60,10 +66,6 @@ public class KubaBlocks {
         return false;
     }
 
-    public static boolean onlyColdMobs(BlockState state, BlockGetter world, BlockPos pos, EntityType<?> type)
-    {
-        return Helpers.isEntity(type, TFCTags.Entities.SPAWNS_ON_COLD_BLOCKS);
-    }
 
     public static ToIntFunction<BlockState> alwaysLit()
     {
@@ -98,7 +100,7 @@ public class KubaBlocks {
 
     private static <T extends Block> Id<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory)
     {
-        return new Id<>(RegistrationHelpers.registerBlock(TFCBlocks.BLOCKS, TFCItems.ITEMS, name, blockSupplier, blockItemFactory));
+        return new Id<>(RegistrationHelpers.registerBlock(KubaBlocks.BLOCKS, KubastfcaItems.ITEMS, name, blockSupplier, blockItemFactory));
     }
 
 

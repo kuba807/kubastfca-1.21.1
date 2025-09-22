@@ -6,7 +6,7 @@ import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.crop.DeadCropBlock;
 import net.dries007.tfc.common.blocks.crop.WildCropBlock;
 import net.dries007.tfc.util.climate.ClimateRange;
-import net.dries007.tfc.util.climate.ClimateRanges;
+import net.kuba807.kubastfca.util.climate.ClimateRanges;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
