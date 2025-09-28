@@ -1,7 +1,6 @@
 package net.kuba807.kubastfca.common.block;
 
 
-import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.kuba807.kubastfca.common.block.crop.Crop;
 
 
@@ -14,28 +13,21 @@ import net.minecraft.world.item.Item;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.function.ToIntFunction;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.BlockGetter;
+
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
 
 
-import net.dries007.tfc.common.fluids.IFluidLoggable;
-import net.dries007.tfc.common.items.TFCItems;
+
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 import net.dries007.tfc.util.registry.RegistryHolder;
 
 import static net.kuba807.kubastfca.kubastfca.MODID;
 
-public class KubaBlocks {
+public class KubastfcaBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, MODID);
 
     public static final Map<Crop, Id<Block>> CROPS = Helpers.mapOf(Crop.class, crop ->
@@ -51,38 +43,36 @@ public class KubaBlocks {
     );
 
 
-    public static boolean always(BlockState state, BlockGetter level, BlockPos pos)
-    {
-        return true;
-    }
+  // public static boolean always(BlockState state, BlockGetter level, BlockPos pos)
+  // {
+  //     return true;
+  // }
 
-    public static boolean never(BlockState state, BlockGetter level, BlockPos pos)
-    {
-        return false;
-    }
+  // public static boolean never(BlockState state, BlockGetter level, BlockPos pos)
+  // {
+  //     return false;
+  // }
 
-    public static boolean neverEntity(BlockState state, BlockGetter world, BlockPos pos, EntityType<?> type)
-    {
-        return false;
-    }
-
-
-    public static ToIntFunction<BlockState> alwaysLit()
-    {
-        return s -> 15;
-    }
-
-    public static ToIntFunction<BlockState> lavaLoggedBlockEmission()
-    {
-        return state -> state.getValue(((IFluidLoggable) state.getBlock()).getFluidProperty()).is(Fluids.LAVA) ? 15 : 0;
-    }
-
-    public static ToIntFunction<BlockState> litBlockEmission(int lightValue)
-    {
-        return state -> state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
-    }
+  // public static boolean neverEntity(BlockState state, BlockGetter world, BlockPos pos, EntityType<?> type)
+  // {
+  //     return false;
+  // }
 
 
+  // public static ToIntFunction<BlockState> alwaysLit()
+  // {
+  //     return s -> 15;
+  // }
+
+  // public static ToIntFunction<BlockState> lavaLoggedBlockEmission()
+  // {
+    //    return state -> state.getValue(((IFluidLoggable) state.getBlock()).getFluidProperty()).is(Fluids.LAVA) ? 15 : 0;
+    //}
+
+   // public static ToIntFunction<BlockState> litBlockEmission(int lightValue)
+   // {
+   //     return state -> state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
+   // }
     private static <T extends Block> Id<T> registerNoItem(String name, Supplier<T> blockSupplier)
     {
         return register(name, blockSupplier, (Function<T, ? extends BlockItem>) null);
@@ -100,7 +90,7 @@ public class KubaBlocks {
 
     private static <T extends Block> Id<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory)
     {
-        return new Id<>(RegistrationHelpers.registerBlock(KubaBlocks.BLOCKS, KubastfcaItems.ITEMS, name, blockSupplier, blockItemFactory));
+        return new Id<>(RegistrationHelpers.registerBlock(KubastfcaBlocks.BLOCKS, KubastfcaItems.ITEMS, name, blockSupplier, blockItemFactory));
     }
 
 

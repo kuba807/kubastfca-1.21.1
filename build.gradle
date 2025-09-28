@@ -10,7 +10,7 @@ String mc_version ="1.21.1"
 String neoForgeVersion = "21.1.197"
 String parchmentVersion  = "2024.11.17"
 String parchmentMinecraftVersion = "1.21.1"
-String tfc_version ="7004920"
+String tfc_version ="7035035"
 
 // Dependency versions
 String emiVersion = "1.1.22+1.21.1"
