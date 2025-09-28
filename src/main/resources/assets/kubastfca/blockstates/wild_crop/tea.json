@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "mature=true": {
+      "model": "kubastfca:block/wild_crop/tea"
+    },
+    "mature=false": {
+      "model": "kubastfca:block/dead_crop/tea"
+    }
+  }
+}

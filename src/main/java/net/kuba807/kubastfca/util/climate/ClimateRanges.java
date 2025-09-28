@@ -10,7 +10,8 @@ package net.kuba807.kubastfca.util.climate;
 import java.util.Locale;
 import java.util.Map;
 
-import net.dries007.tfc.common.blocks.crop.Crop;
+
+import net.kuba807.kubastfca.common.block.crop.Crop;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.climate.ClimateRange;
 import net.dries007.tfc.util.data.DataManager;

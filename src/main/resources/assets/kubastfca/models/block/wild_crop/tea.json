@@ -1,0 +1,6 @@
+{
+  "parent": "tfc:block/wild_crop/crop",
+  "textures": {
+    "crop": "kubastfca:block/crop/tea/tea_5"
+  }
+}

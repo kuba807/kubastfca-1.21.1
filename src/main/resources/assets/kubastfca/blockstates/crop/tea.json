@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "tfc:block/crop/cabbage_age_0"
+    },
+    "age=1": {
+      "model": "tfc:block/crop/cabbage_age_1"
+    },
+    "age=2": {
+      "model": "tfc:block/crop/cabbage_age_2"
+    },
+    "age=3": {
+      "model": "kubastfca:block/crop/tea_age_3"
+    },
+    "age=4": {
+      "model": "kubastfca:block/crop/tea_age_4"
+    },
+    "age=5": {
+      "model": "kubastfca:block/crop/tea_age_5"
+    },
+    "age=6": {
+      "model": "kubastfca:block/crop/tea_age_6"
+    },
+    "age=7": {
+      "model": "kubastfca:block/crop/tea_age_7"
+    }
+  }
+}

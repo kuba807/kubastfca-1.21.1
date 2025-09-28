@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "mature=true,part=top": {
+      "model": "kubastfca:block/dead_crop/sunflower_top"
+    },
+    "mature=true,part=bottom": {
+      "model": "kubastfca:block/dead_crop/sunflower_bottom"
+    },
+    "mature=false": {
+      "model": "kubastfca:block/dead_crop/sunflower_young"
+    }
+  }
+}
