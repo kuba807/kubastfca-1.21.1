@@ -1,0 +1,1 @@
+{"type": "minecraft:crafting_shapeless", "category": "misc", "ingredients": [{"type": "tfc:and", "children": [{"item": "kubastfca:jar/veggie"}, {"type": "tfc:not_rotten"}]}], "result": {"count": 1, "id": "kubastfca:jar/veggie_unsealed"}}
