@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "kubastfca:jar/meat_wek",
-    "kubastfca:jar/mix_wek",
-    "kubastfca:jar/veggie_wek"
+    "kubastfca:jar/meat",
+    "kubastfca:jar/mix",
+    "kubastfca:jar/veggie"
 
   ]
 }

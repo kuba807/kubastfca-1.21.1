@@ -1,1 +1,1 @@
-{"ingredient": {"item": "kubastfca:raw_pasta"}, "hunger": 2, "decay_modifier": 0.1, "saturation": 4, "fruit": 0, "grain": 0, "protein": 0, "vegetables": 0, "dairy": 0}
+{"ingredient": {"item": "kubastfca:raw_pasta"}, "edible": true, "hunger": 2, "decay_modifier": 0.1, "saturation": 4, "fruit": 0, "grain": 0, "protein": 0, "vegetables": 0, "dairy": 0}

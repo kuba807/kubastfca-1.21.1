@@ -1,5 +1,5 @@
 {
-  "itemGroup.kubastfca": "Example Mod Tab",
+  "itemGroup.kubastfca": "Kubastfca",
   "block.kubastfca.example_block": "Example Block",
   "item.kubastfca.example_item": "Example Item",
   "kubastfca.configuration.title": "Kuba's tfc additions Configs",
@@ -14,6 +14,7 @@
   "item.kubastfca.cooked_dumpling":"cooked dumpling",
   "item.kubastfca.cooked_pasta": "pasta",
   "item.kubastfca.raw_pasta": "raw pasta",
+  "item.kubastfca.jar.dirty_jar": "fatty jar",
   "fluid_type.kubastfca.golden_rod": "golden rod tea",
   "block.kubastfca.fluid.golden_rod": "golden rod tea",
   "fluid_type.kubastfca.blood_lily": "blood lily tea",

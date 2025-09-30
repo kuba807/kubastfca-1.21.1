@@ -1,15 +1,26 @@
 {
   "type": "tfc:heating",
   "ingredient": {
-    "item": "kubastfca:raw_poppy_roll"
+    "type": "tfc:and",
+    "children": [
+      {
+        "item": "kubastfca:raw_poppy_roll"
+      },
+      {
+        "type": "tfc:not_rotten"
+      }
+    ]
   },
   "result_item": {
-
-  "stack": {
-    "item": "kubastfca:poppy_roll",
-    "count": 1
-  }
-
+    "modifiers": [
+      {
+        "type": "tfc:copy_food"
+      }
+    ],
+    "stack": {
+      "count": 1,
+      "id": "kubastfca:cooked_poppy_roll"
+    }
   },
-  "temperature": 300
+  "temperature": 200.0
 }

@@ -28,6 +28,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.kuba807.kubastfca.common.recipes.KubaRecipeSerializers;
 import net.kuba807.kubastfca.common.item.KubastfcaItems;
 import net.kuba807.kubastfca.common.block.KubastfcaBlocks;
+
+
+
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(kubastfca.MODID)
 public class kubastfca {
@@ -45,13 +48,31 @@ public class kubastfca {
     // Creates a new food item with the id "kubastfca:example_id", nutrition 1 and saturation 2
 
     // Creates a creative tab with the id "kubastfca:example_tab" for the example item, that is placed after the combat tab
-   // public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
-   //         .title(Component.translatable("itemGroup.kubastfca")) //The language key for the title of your CreativeModeTab
-   //         .withTabsBefore(CreativeModeTabs.COMBAT)
-   //         .icon(() -> EXAMPLE_ITEM.get().getDefaultInstance())
-   //         .displayItems((parameters, output) -> {
-   //             output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
-   //         }).build());
+ public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("kubastfca", () -> CreativeModeTab.builder()
+         .title(Component.translatable("itemGroup.kubastfca")) //The language key for the title of your CreativeModeTab
+         .withTabsBefore(CreativeModeTabs.COMBAT)
+         .icon(() -> KubastfcaItems.COOKED_DUMPLING.get().getDefaultInstance())
+         .displayItems((parameters, output) -> {
+             output.accept(KubastfcaItems.COOKED_DUMPLING.get().getDefaultInstance());
+             output.accept(KubastfcaItems.RAW_DUMPLING.get().getDefaultInstance());
+             output.accept(KubastfcaItems.COOKED_POPPY_ROLL.get().getDefaultInstance());
+             output.accept(KubastfcaItems.RAW_POPPY_ROLL.get().getDefaultInstance());
+             output.accept(KubastfcaItems.COOKED_PASTA.get().getDefaultInstance());
+             output.accept(KubastfcaItems.RAW_PASTA.get().getDefaultInstance());
+             output.accept(KubastfcaItems.PEMMICAN.get().getDefaultInstance());
+             output.accept(KubastfcaItems.MEAT_WEK.get().getDefaultInstance());
+             output.accept(KubastfcaItems.UNSEALED_MEAT_WEK.get().getDefaultInstance());
+             output.accept(KubastfcaItems.MIX_WEK.get().getDefaultInstance());
+             output.accept(KubastfcaItems.UNSEALED_MIX_WEK.get().getDefaultInstance());
+             output.accept(KubastfcaItems.VEGGIE_WEK.get().getDefaultInstance());
+             output.accept(KubastfcaItems.UNSEALED_VEGGIE_WEK.get().getDefaultInstance());
+             output.accept(KubastfcaItems.DIRTY_JAR.get().getDefaultInstance());
+
+
+
+
+             // Add the example item to the tab. For your own tabs, this method is preferred over the event
+         }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.

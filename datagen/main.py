@@ -33,11 +33,12 @@ def modelJar(name,block):
 
 
 
-def fooddata(name,hunger,decay,sat,grain,fruit,prot,veg,dairy):
+def fooddata(name,hunger,decay,sat,grain,fruit,prot,veg,dairy,edible=True):
   data = {
   "ingredient": {
     "item": "kubastfca:"+name
   },
+  "edible": edible,
   "hunger":hunger,
   "decay_modifier":decay,
   "saturation":sat,
@@ -55,12 +56,508 @@ def simplefood(name, hunger=4, decay=1, sat=4, grain=0, fruit=0, prot=0, veg=0, 
     modelitem(name)
     foods.append(name)
     fooddata(name, hunger, decay, sat, grain, fruit, prot, veg, dairy)
-
+def canningjar(name):
+  data={
+  "type": "tfc:pot",
+  "duration": 300,
+  "fluid_ingredient": {
+    "amount": 100,
+    "fluid": "minecraft:water"
+  },
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "item_output": [
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    }
+  ],
+  "temperature": 300.0,
+  "uses_all_fluid": False
+}
+  with open("../src/main/resources/data/kubastfca/recipe/food/" + name + "_canning_1.json", 'w') as file:
+    json.dump(data, file)
+    data = {
+  "type": "tfc:pot",
+  "duration": 300,
+  "fluid_ingredient": {
+    "amount": 200,
+    "fluid": "minecraft:water"
+  },
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "item_output": [
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    },
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    }
+  ],
+  "temperature": 300.0,
+  "uses_all_fluid": False
+}
+    with open("../src/main/resources/data/kubastfca/recipe/food/" + name + "_canning_2.json", 'w') as file:
+      json.dump(data, file)
+    data ={
+  "type": "tfc:pot",
+  "duration": 300,
+  "fluid_ingredient": {
+    "amount": 300,
+    "fluid": "minecraft:water"
+  },
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "item_output": [
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    },
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    },
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    }
+  ],
+  "temperature": 300.0,
+  "uses_all_fluid": False
+}
+  with open("../src/main/resources/data/kubastfca/recipe/food/" + name + "_canning_3.json", 'w') as file:
+    json.dump(data, file)
+  data = {
+  "type": "tfc:pot",
+  "duration": 300,
+  "fluid_ingredient": {
+    "amount": 400,
+    "fluid": "minecraft:water"
+  },
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "item_output": [
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    },
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    },
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    },
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    }
+  ],
+  "temperature": 300.0,
+  "uses_all_fluid": False
+}
+  with open("../src/main/resources/data/kubastfca/recipe/food/" + name + "_canning_4.json", 'w') as file:
+    json.dump(data, file)
+  data = {
+  "type": "tfc:pot",
+  "duration": 300,
+  "fluid_ingredient": {
+    "amount": 500,
+    "fluid": "minecraft:water"
+  },
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    },
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:lacks_trait",
+          "trait": "tfc:canned"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "item_output": [
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    },
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    },
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    },
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    },
+    {
+      "modifiers": [
+        {
+          "type": "tfc:copy_input"
+        },
+        {
+          "type": "tfc:add_trait",
+          "trait": "tfc:canned"
+        }
+      ]
+    }
+  ],
+  "temperature": 300.0,
+  "uses_all_fluid": False
+}
+  with open("../src/main/resources/data/kubastfca/recipe/food/" + name + "_canning_5.json", 'w') as file:
+    json.dump(data, file)
+def openjar(name):
+  data= {
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "type": "tfc:and",
+      "children": [
+        {
+          "item": "kubastfca:jar/"+name
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "kubastfca:jar/"+name+"_unsealed"
+  }
+}
+  with open("../src/main/resources/data/kubastfca/recipe/food/jar/" + name + "_open.json", 'w') as file:
+    json.dump(data, file)
 sloik=[]
 def wek(name,block,fruit=0,grain=0,protein=0,veg=0,dairy=0):
+  openjar(name)
+  canningjar(name)
   modelJar(name,block)
   modelJar(name+"_unsealed",block)
-  fooddata("jar/"+name+"_unsealed",4,4,2,fruit=fruit,grain=grain,prot=protein,veg=veg,dairy=dairy)
+  fooddata("jar/"+name+"_unsealed",4,4,2,fruit=fruit,grain=grain,prot=protein,veg=veg,dairy=dairy,edible=False)
   sloik.append(name)
 
 wek("meat","peach",protein=1)

@@ -1,8 +1,7 @@
 {
-  "itemGroup.kubastfca": "Example Mod Tab",
+  "itemGroup.kubastfca": "Kubastfca",
   "block.kubastfca.example_block": "Example Block",
   "item.kubastfca.example_item": "Example Item",
-
   "kubastfca.configuration.title": "Kuba's tfc additions Configs",
   "kubastfca.configuration.section.kubastfca.common.toml": "Kuba's tfc additions Configs",
   "kubastfca.configuration.section.kubastfca.common.toml.title": "Kuba's tfc additions Configs",
@@ -15,6 +14,7 @@
   "item.kubastfca.cooked_dumpling": "ugotowany pieróg",
   "item.kubastfca.cooked_pasta": "ugotowany makaron",
   "item.kubastfca.raw_pasta": "surowy makaron",
+  "item.kubastfca.jar.dirty_jar": "tłusty słoik",
   "fluid_type.kubastfca.golden_rod": "herbata z nawłoci",
   "block.kubastfca.fluid.golden_rod": "herbata z nawłoci",
   "fluid_type.kubastfca.blood_lily": "herbata z krawej lilii",
@@ -46,7 +46,6 @@
   "item.kubastfca.green_tea_leaves": "listeczki zielonej herbaty",
   "item.kubastfca.black_tea_leaves": "listeczki czarnej herbaty",
   "item.kubastfca.seeds.tea": "nasiona zielonej herbaty",
-  "tfc.jei.dumpling_pot": "gotowanie",
   "item.kubastfca.cooked_poppy_roll": "makowiec",
   "item.kubastfca.raw_poppy_roll": "surowy makowiec",
   "item.kubastfca.sunflower_seeds": "pestki słonecznika",
@@ -66,5 +65,6 @@
   "item.kubastfca.tea_labrador_tea_bucket": "wiadro herbaty z różanecznika",
   "item.kubastfca.tea_sacred_datura_bucket": "wiadro herbaty z  bielunia świętego",
   "item.kubastfca.poppy_bucket": "wiadro herbaty z maka",
-  "item.kubastfca.black_tea_bucket": "wiadro czarnej herbaty"
+  "item.kubastfca.black_tea_bucket": "wiadro czarnej herbaty",
+  "tfc.jei.dumpling_pot": "gotowanie"
 }

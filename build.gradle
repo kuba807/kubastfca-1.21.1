@@ -147,15 +147,15 @@ dependencies {
    // We add the full version to localRuntime, not runtimeOnly, so that we do not publish a dependency on it
     // localRuntime "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
 
-
+    compileOnly("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
+    compileOnly("mezz.jei:jei-${mc_version}-neoforge-api:${jei_version}")
+    runtimeOnly("mezz.jei:jei-${mc_version}-neoforge:${jei_version}")
     // EMI
-      compileOnly("dev.emi:emi-neoforge:${emiVersion}:api")
-    runtimeOnly("dev.emi:emi-neoforge:${emiVersion}")
+    compileOnly("dev.emi:emi-neoforge:${emiVersion}:api")
+  runtimeOnly("dev.emi:emi-neoforge:${emiVersion}")
 
     // JEI
-   compileOnly("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
-   compileOnly("mezz.jei:jei-${mc_version}-neoforge-api:${jei_version}")
-   runtimeOnly("mezz.jei:jei-${mc_version}-neoforge:${jei_version}")
+
 //
  //   // Patchouli
  implementation("vazkii.patchouli:Patchouli:$patchouliVersion")

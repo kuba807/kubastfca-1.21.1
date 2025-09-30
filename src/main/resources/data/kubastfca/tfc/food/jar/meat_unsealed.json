@@ -1,1 +1,1 @@
-{"ingredient": {"item": "kubastfca:jar/meat_unsealed"}, "hunger": 4, "decay_modifier": 4, "saturation": 2, "fruit": 0, "grain": 0, "protein": 1, "vegetables": 0, "dairy": 0}
+{"ingredient": {"item": "kubastfca:jar/meat_unsealed"}, "edible": false, "hunger": 4, "decay_modifier": 4, "saturation": 2, "fruit": 0, "grain": 0, "protein": 1, "vegetables": 0, "dairy": 0}
