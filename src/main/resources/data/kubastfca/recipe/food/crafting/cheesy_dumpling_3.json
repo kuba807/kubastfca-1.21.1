@@ -25,11 +25,23 @@
           "type": "tfc:not_rotten"
         }
       ]
+    },
+    "C": {
+      "type": "tfc:and",
+      "children": [
+        {
+          "tag": "c:foods/dairy"
+        },
+        {
+          "type": "tfc:not_rotten"
+        }
+      ]
     }
+
   },
   "pattern": [
     "KB ",
-    "SSS",
+    "SSC",
     " B "
   ],
   "remainder": {

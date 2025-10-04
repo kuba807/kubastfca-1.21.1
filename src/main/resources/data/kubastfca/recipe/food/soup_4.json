@@ -49,17 +49,6 @@
           "type": "tfc:not_rotten"
         }
       ]
-    },
-    {
-      "type": "tfc:and",
-      "children": [
-        {
-          "tag": "tfc:usable_in_soup"
-        },
-        {
-          "type": "tfc:not_rotten"
-        }
-      ]
     }
   ],
   "temperature": 300.0
