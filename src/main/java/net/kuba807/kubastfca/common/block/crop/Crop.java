@@ -1,11 +1,14 @@
 package net.kuba807.kubastfca.common.block.crop;
 
-import net.dries007.tfc.common.blockentities.CropBlockEntity;
+//import net.dries007.tfc.common.blockentities.CropBlockEntity;
+
+import net.kuba807.kubastfca.common.blockentities.CropBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.crop.DeadCropBlock;
 import net.dries007.tfc.common.blocks.crop.WildCropBlock;
 import net.dries007.tfc.util.climate.ClimateRange;
+import net.kuba807.kubastfca.common.blockentities.KubastfcaBlockEntities;
 import net.kuba807.kubastfca.util.climate.ClimateRanges;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.SoundType;
@@ -73,7 +76,7 @@ TEA(0.75f, -0.2f, -0.2f, 8); // Default, 8
 
 private static ExtendedProperties crop()
 {
-    return dead().blockEntity(TFCBlockEntities.CROP).serverTicks(CropBlockEntity::serverTick);
+    return dead().blockEntity(KubastfcaBlockEntities.CROP).serverTicks(CropBlockEntity::serverTick);
 }
 
 private static ExtendedProperties dead()

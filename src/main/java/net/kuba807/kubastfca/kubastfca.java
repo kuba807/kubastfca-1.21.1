@@ -1,5 +1,9 @@
 package net.kuba807.kubastfca;
 
+import net.kuba807.kubastfca.common.block.crop.Crop;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -28,7 +32,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.kuba807.kubastfca.common.recipes.KubaRecipeSerializers;
 import net.kuba807.kubastfca.common.item.KubastfcaItems;
 import net.kuba807.kubastfca.common.block.KubastfcaBlocks;
-
+import net.kuba807.kubastfca.common.blockentities.KubastfcaBlockEntities;
 
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -86,6 +90,7 @@ public class kubastfca {
         KubaRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         KubastfcaItems.ITEMS.register(modEventBus);
         KubastfcaBlocks.BLOCKS.register(modEventBus);
+        KubastfcaBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
 
@@ -103,15 +108,6 @@ public class kubastfca {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-
-        if (Config.LOG_DIRT_BLOCK.getAsBoolean()) {
-            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
-        }
-
-        LOGGER.info("{}{}", Config.MAGIC_NUMBER_INTRODUCTION.get(), Config.MAGIC_NUMBER.getAsInt());
-
-        Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
     }
 
     // Add the example block item to the building blocks tab
@@ -120,5 +116,21 @@ public class kubastfca {
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+    public static class ClientModEvents
+    {
+        @SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event)
+        {
+
+            for (Crop crop : Crop.values()) {
+                ItemBlockRenderTypes.setRenderLayer(KubastfcaBlocks.CROPS.get(crop).get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(KubastfcaBlocks.DEAD_CROPS.get(crop).get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(KubastfcaBlocks.WILD_CROPS.get(crop).get(), RenderType.cutout());
+            }
+            // Some client setup code
+            LOGGER.info("hello user, do not be afraid to look into the log file :)");
+            //LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        }
     }
 }
