@@ -31,11 +31,11 @@ public class KubastfcaBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, MODID);
 
     public static final Map<Crop, Id<Block>> CROPS = Helpers.mapOf(Crop.class, crop ->
-            register("crop/" + crop.name(), crop::create)
+            registerNoItem("crop/" + crop.name(), crop::create)
     );
 
     public static final Map<Crop, Id<Block>> DEAD_CROPS = Helpers.mapOf(Crop.class, crop ->
-            register("dead_crop/" + crop.name(), crop::createDead)
+            registerNoItem("dead_crop/" + crop.name(), crop::createDead)
     );
 
     public static final Map<Crop, Id<Block>> WILD_CROPS = Helpers.mapOf(Crop.class, crop ->
