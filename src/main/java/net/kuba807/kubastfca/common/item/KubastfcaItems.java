@@ -60,7 +60,12 @@ public class KubastfcaItems {
             "cooked_poppy_roll", new Item.Properties().food(new FoodProperties.Builder()
                     .nutrition(1).saturationModifier(2f).build()));
 
-  public static final DeferredItem<Item> MEAT_WEK= ITEMS.register("jar/meat", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
+    public static final DeferredItem<Item> COTTAGE_CHEESE= ITEMS.registerSimpleItem(
+            "cottage_cheese", new Item.Properties().food(new FoodProperties.Builder()
+                    .nutrition(1).saturationModifier(2f).build()));
+
+
+    public static final DeferredItem<Item> MEAT_WEK= ITEMS.register("jar/meat", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
   public static final DeferredItem<Item> UNSEALED_MEAT_WEK= ITEMS.register("jar/meat_unsealed",  () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(DIRTY_JAR.asItem()).stacksTo(4)));
 
   public static final DeferredItem<Item> MIX_WEK= ITEMS.register("jar/mix", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
