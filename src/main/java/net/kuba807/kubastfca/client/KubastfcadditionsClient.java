@@ -1,5 +1,6 @@
-package net.kuba807.kubastfca;
+package net.kuba807.kubastfca.client;
 
+import net.kuba807.kubastfca.kubastfca;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;

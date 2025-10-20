@@ -1,14 +1,16 @@
 package net.kuba807.kubastfca.common.item;
 
-import net.dries007.tfc.TerraFirmaCraft;
 import net.dries007.tfc.common.Lore;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.registry.RegistryHolder;
 import net.kuba807.kubastfca.common.block.KubastfcaBlocks;
 import net.kuba807.kubastfca.common.block.crop.Crop;
+import net.kuba807.kubastfca.common.fluids.FluidId;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -24,7 +26,6 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 
 import static net.kuba807.kubastfca.kubastfca.MODID;
-import static net.dries007.tfc.common.items.TFCItems.EMPTY_JAR;
 
 public class KubastfcaItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
@@ -74,6 +75,11 @@ public class KubastfcaItems {
   public static final DeferredItem<Item> VEGGIE_WEK= ITEMS.register("jar/veggie", () -> new Item(new Properties().component(Lore.TYPE, Lore.SEALED)));
   public static final DeferredItem<Item> UNSEALED_VEGGIE_WEK= ITEMS.register("jar/veggie_unsealed", () -> new Item(new Properties().component(Lore.TYPE, Lore.UNSEALED).craftRemainder(DIRTY_JAR.asItem()).stacksTo(4)));
 
+
+
+    public static final Map<FluidId, ItemId> FLUID_BUCKETS = FluidId.mapOf(fluid ->
+            register("bucket/" + fluid.name(), () -> new BucketItem(fluid.fluid().get(), new Properties().craftRemainder(Items.BUCKET).stacksTo(1)))
+    );
 
     public static final Map<Crop, Object> CROP_SEEDS = Helpers.mapOf(Crop.class, crop ->
             register("seeds/" + crop.name(), () -> new ItemNameBlockItem(KubastfcaBlocks.CROPS.get(crop).get(), new Properties()))

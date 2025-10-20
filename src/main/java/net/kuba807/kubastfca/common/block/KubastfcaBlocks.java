@@ -5,6 +5,8 @@ import net.kuba807.kubastfca.common.block.crop.Crop;
 
 
 import net.dries007.tfc.util.Helpers;
+import net.kuba807.kubastfca.common.fluids.KubastfcaFluids;
+import net.kuba807.kubastfca.common.fluids.DefaultFluids;
 import net.kuba807.kubastfca.common.item.KubastfcaItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
@@ -16,10 +18,12 @@ import java.util.function.Supplier;
 
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
-
 
 
 import net.dries007.tfc.util.registry.RegistrationHelpers;
@@ -29,6 +33,15 @@ import static net.kuba807.kubastfca.kubastfca.MODID;
 
 public class KubastfcaBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, MODID);
+
+
+
+    public static final Map<DefaultFluids, Id<LiquidBlock>> DEFAULT_FLUIDS = Helpers.mapOf(DefaultFluids.class, fluid ->
+            registerNoItem("fluid/" + fluid.getId(), () -> new LiquidBlock(KubastfcaFluids.DEFAULT_FLUIDS.get(fluid).getSource(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()))
+    );
+
+
+
 
     public static final Map<Crop, Id<Block>> CROPS = Helpers.mapOf(Crop.class, crop ->
             register("crop/" + crop.name(), crop::create)

@@ -1,28 +1,27 @@
 package net.kuba807.kubastfca;
 
+import net.kuba807.kubastfca.client.ClientEventHandler;
+import net.kuba807.kubastfca.common.fluids.KubastfcaFluids;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
-
+import net.neoforged.bus.api.IEventBus;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.kuba807.kubastfca.common.recipes.KubaRecipeSerializers;
@@ -30,10 +29,10 @@ import net.kuba807.kubastfca.common.item.KubastfcaItems;
 import net.kuba807.kubastfca.common.block.KubastfcaBlocks;
 
 
-
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(kubastfca.MODID)
 public class kubastfca {
+
     // Define mod id in a common place for everything to reference
     public static final String MODID = "kubastfca";
     // Directly reference a slf4j logger
@@ -67,6 +66,7 @@ public class kubastfca {
              output.accept(KubastfcaItems.VEGGIE_WEK.get().getDefaultInstance());
              output.accept(KubastfcaItems.UNSEALED_VEGGIE_WEK.get().getDefaultInstance());
              output.accept(KubastfcaItems.DIRTY_JAR.get().getDefaultInstance());
+             output.accept(KubastfcaItems.COTTAGE_CHEESE.get().getDefaultInstance());
 
 
 
@@ -83,11 +83,21 @@ public class kubastfca {
         // Register the Deferred Register to the mod event bus so blocks get registered
         //BLOCKS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
-        KubaRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         KubastfcaItems.ITEMS.register(modEventBus);
+
         KubastfcaBlocks.BLOCKS.register(modEventBus);
+        KubastfcaFluids.FLUIDS.register(modEventBus);
+        KubastfcaFluids.FLUID_TYPES.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
+        KubaRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
+
+
+        if (FMLEnvironment.dist == Dist.CLIENT)
+        {
+            ClientEventHandler.init(modContainer, modEventBus);
+
+        }
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (Kubastfcadditions) to respond directly to events.
