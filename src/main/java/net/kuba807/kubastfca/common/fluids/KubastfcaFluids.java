@@ -6,6 +6,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 
+import net.dries007.tfc.common.blocks.TFCBlocks;
+import net.dries007.tfc.common.fluids.TFCFluids;
 import net.kuba807.kubastfca.common.block.KubastfcaBlocks;
 import net.kuba807.kubastfca.common.item.KubastfcaItems;
 import net.minecraft.core.registries.Registries;
@@ -43,7 +45,7 @@ public class KubastfcaFluids {
     public static final Map<DefaultFluids, FluidHolder<BaseFlowingFluid>> DEFAULT_FLUIDS = Helpers.mapOf(DefaultFluids.class, fluid -> register(
             fluid.getId(),
             properties -> properties
-                    .block(KubastfcaBlocks.DEFAULT_FLUIDS.get(fluid))
+                    .block(TFCBlocks.SALT_WATER)
                     .bucket(KubastfcaItems.FLUID_BUCKETS.get(FluidId.asType(fluid))),
             waterLike()
                     .descriptionId("fluid.kubastfca." + fluid.getId())

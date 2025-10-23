@@ -17,7 +17,7 @@ public abstract class KubaDefaultCropBlock extends DefaultCropBlock {
 
     public static KubaDefaultCropBlock create(ExtendedProperties properties, int stages, Crop crop) {
         final IntegerProperty property = TFCBlockStateProperties.getAgeProperty(stages - 1);
-        return new KubaDefaultCropBlock(properties, stages - 1, (Supplier) KubastfcaBlocks.DEAD_CROPS.get(crop), (Supplier) KubastfcaItems.CROP_SEEDS.get(crop), crop.getNitrogen(),crop.getPhosphorous(),crop.getPotassium(), (Supplier) ClimateRanges.CROPS.get(crop)) {
+        return new KubaDefaultCropBlock(properties, stages - 1, KubastfcaBlocks.DEAD_CROPS.get(crop), (Supplier) KubastfcaItems.CROP_SEEDS.get(crop), crop.getNitrogen(),crop.getPhosphorous(),crop.getPotassium(), (Supplier) ClimateRanges.CROPS.get(crop)) {
             public IntegerProperty getAgeProperty() {
                 return property;
             }

@@ -4,25 +4,33 @@ import net.dries007.tfc.common.blockentities.CropBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.crop.DeadCropBlock;
+import net.dries007.tfc.common.blocks.crop.PickableCropBlock;
 import net.dries007.tfc.common.blocks.crop.WildCropBlock;
+
+import net.dries007.tfc.common.items.Food;
+
+import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.climate.ClimateRange;
 import net.kuba807.kubastfca.util.climate.ClimateRanges;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.block.Block;
 
+import javax.annotation.Nullable;
 import java.util.Locale;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import  net.kuba807.kubastfca.common.item.KubastfcaItems;
 
 public enum Crop implements StringRepresentable
 
 {
 
-//        // Legumes
-//    CASSAVA(-0.5f, 0.4f, 0.2f, 6), // Default, 6
+//// Legumes
+//CASSAVA(-0.5f, 0.4f, 0.2f, 6), // Default, 6
 //TEA(-0.8f, 0.5f, 0.4f, 4, 4, true), // Double, Stick, 4 -> 4
 //LENTIL(-0.8f, 0.2f, 0.2f, 6), // Default, 6
 //PEANUT(-0.9f, 0.5f, 0.5f, 6), // Default, 6
@@ -47,7 +55,7 @@ TEA(0.75f, -0.2f, -0.2f, 8); // Default, 8
 //SQUASH(0.25f, 0.45f, 0.5f, 8), // Default , 8
 //
 //// Pickable Vegetables
-//TOMATO(0.3f, 0.4f, 0.5f, 4, 4, true, null, () -> TFCItems.FOOD.get(Food.TOMATO)), // Double, Stick, 4 -> 4
+//BOMATO(0.3f, 0.4f, 0.5f, 8,null, () -> KubastfcaItems.PEMMICAN); // Double, Stick, 4 -> 4
 //RED_BELL_PEPPER(0.3f, 0.4f, 0.5f, 7, () -> TFCItems.FOOD.get(Food.GREEN_BELL_PEPPER), () -> TFCItems.FOOD.get(Food.RED_BELL_PEPPER)), // Pickable, 7
 //YELLOW_BELL_PEPPER(0.3f, 0.4f, 0.5f, 7, () -> TFCItems.FOOD.get(Food.GREEN_BELL_PEPPER), () -> TFCItems.FOOD.get(Food.YELLOW_BELL_PEPPER)), // Pickable,
 //
@@ -99,11 +107,11 @@ Crop(float nitrogen, float phosporous, float potassium, int singleBlockStages)
 //    this(nitrogen, phosporous, potassium, self -> SpreadingCropBlock.create(crop(), spreadingSingleBlockStages, self, fruit), self -> new DeadCropBlock(dead(), self.getClimateRange()), self -> new WildSpreadingCropBlock(dead().randomTicks(), fruit));
 //}
 //
-//Crop(float nitrogen, float phosporous, float potassium, int spreadingSingleBlockStages, @Nullable Supplier<Supplier<? extends Item>> fruit1, Supplier<Supplier<? extends Item>> fruit2)
-//{
-//    this(nitrogen, phosporous, potassium, self -> PickableCropBlock.create(crop(), spreadingSingleBlockStages, self, fruit1, fruit2), self -> new DeadCropBlock(dead(), self.getClimateRange()), self -> new WildCropBlock(dead().randomTicks()));
-//}
-//
+Crop(float nitrogen, float phosporous, float potassium, int spreadingSingleBlockStages, @Nullable Supplier<Supplier<? extends Item>> fruit1, Supplier<Supplier<? extends Item>> fruit2)
+{
+    this(nitrogen, phosporous, potassium, self -> KubaPickableCropBlock.create(crop(), spreadingSingleBlockStages, self, fruit1, fruit2), self -> new DeadCropBlock(dead(), self.getClimateRange()), self -> new WildCropBlock(dead().randomTicks()));
+}
+
 //Crop(float nitrogen, float phosporous, float potassium, int floodedSingleBlockStages, boolean flooded)
 //{
 //    this(nitrogen, phosporous, potassium, self -> FloodedCropBlock.create(crop(), floodedSingleBlockStages, self), self -> new FloodedDeadCropBlock(dead(), self.getClimateRange()), self -> new FloodedWildCropBlock(dead().randomTicks()));
