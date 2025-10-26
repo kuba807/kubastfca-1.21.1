@@ -65,6 +65,9 @@
   "item.kubastfca.tea_labrador_tea_bucket": "wiadro herbaty z różanecznika",
   "item.kubastfca.tea_sacred_datura_bucket": "wiadro herbaty z  bielunia świętego",
   "item.kubastfca.poppy_bucket": "wiadro herbaty z maka",
+  "item.kubastfca.cottage_cheese": "twaróg",
+  "item.kubastfca.bucket.sour_milk": "wiadro skwaśniałego mleko",
+  "fluid.kubastfca.sour_milk": "skwaśniałe mleko",
   "item.kubastfca.black_tea_bucket": "wiadro czarnej herbaty",
   "tfc.jei.dumpling_pot": "gotowanie"
 }

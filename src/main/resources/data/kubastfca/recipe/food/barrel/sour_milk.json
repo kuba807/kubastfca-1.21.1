@@ -1,0 +1,12 @@
+{
+  "type": "tfc:barrel_sealed",
+  "duration": 96000,
+  "input_fluid": {
+    "amount": 1000,
+    "fluid": "minecraft:milk"
+  },
+  "output_fluid": {
+    "amount": 250,
+    "id": "kubastfca:sour_milk"
+  }
+}

@@ -30,7 +30,7 @@ public class ClientEventHandler {
     {
 
         bus.addListener(ClientEventHandler::registerColorHandlerItems);
-
+        bus.addListener(ClientEventHandler::registerExtensions);
 
 
     }

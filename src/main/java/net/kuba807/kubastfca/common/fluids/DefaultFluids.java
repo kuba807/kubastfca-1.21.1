@@ -10,7 +10,6 @@ public enum DefaultFluids
 
 
 
-    SOUR_MLK(0xFFFFFBE8),
     SOUR_MILK(0xFFFFFBE8);
 
     private final String id;

@@ -1,6 +1,5 @@
 package net.kuba807.kubastfca.common.block;
 
-
 import net.kuba807.kubastfca.common.block.crop.Crop;
 
 
@@ -25,9 +24,11 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
 
-import net.dries007.tfc.util.registry.RegistrationHelpers;
-import net.dries007.tfc.util.registry.RegistryHolder;
+//import net.dries007.tfc.util.registry.RegistrationHelpers;
+//import net.dries007.tfc.util.registry.RegistryHolder;
 
+import net.kuba807.kubastfca.util.registry.RegistrationHelpers;
+import net.kuba807.kubastfca.util.registry.RegistryHolder;
 import static net.kuba807.kubastfca.kubastfca.MODID;
 
 public class KubastfcaBlocks {

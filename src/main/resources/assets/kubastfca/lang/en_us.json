@@ -65,6 +65,9 @@
   "item.kubastfca.tea_labrador_tea_bucket": "labrador tea bucket",
   "item.kubastfca.tea_sacred_datura_bucket": "sacred datura tea bucket",
   "item.kubastfca.poppy_bucket": "poppy tea bucket",
+  "item.kubastfca.cottage_cheese": "cottage cheese",
+  "item.kubastfca.bucket.sour_milk": "sour milk bucket",
+  "fluid.kubastfca.sour_milk": "sour milk",
   "item.kubastfca.black_tea_bucket": "black tea bucket",
   "tfc.jei.dumpling_pot": "boiling"
 }

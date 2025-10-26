@@ -1,5 +1,8 @@
 import json
 foods=[]
+
+
+
 def modelitem(name):
     data = {
   "parent": "item/generated",
@@ -565,13 +568,14 @@ wek("mix","peach",protein=0.8,veg=0.4)
 wek("veggie","peach",veg=1,protein=0.2)
 simplefood("pemmican",2,0.1,2,prot=1.8,fruit=0.2)
 simplefood("cooked_pasta",4,decay=2.5,sat=4,grain=0.5)
-simplefood("cottage_cheese",dairy=1,)
+simplefood("cottage_cheese",dairy=1.5,sat=2)
 simplefood("raw_pasta",2, sat=0,decay=0.1)
 simplefood("raw_poppy_roll",2,decay=4)
 simplefood("cooked_poppy_roll",5,decay=0.3,sat=2,grain=1.4,fruit=0.2)
 simplefood("raw_dumpling",2,decay=4)
 modelitem("cooked_dumpling")
 foods.append("cooked_dumpling")
+drinks=["sour_milk"]
 def boilingrecipe(input,output,influid="minecraft:water",temp=300):
     data = {
   "type": "tfc:pot",
@@ -916,3 +920,15 @@ for i in foods:
 }
     with open("../src/main/resources/data/c/tags/item/foods.json", 'w') as file:
         json.dump(data, file)
+
+drink=[]
+for i in drinks:
+    drink.append("kubastfca:"+i)
+data ={
+  "replace": False,
+  "values": drink
+}
+with open("../src/main/resources/data/tfc/tags/fluid/drinkables.json", 'w') as file:
+    json.dump(data, file)
+with open("../src/main/resources/data/tfc/tags/fluid/ingredients.json", 'w') as file:
+    json.dump(data, file)

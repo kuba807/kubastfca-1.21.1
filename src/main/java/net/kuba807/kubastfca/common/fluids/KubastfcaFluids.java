@@ -6,20 +6,28 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 
-import net.dries007.tfc.common.blocks.TFCBlocks;
-import net.dries007.tfc.common.fluids.TFCFluids;
 import net.kuba807.kubastfca.common.block.KubastfcaBlocks;
 import net.kuba807.kubastfca.common.item.KubastfcaItems;
+import java.util.Map;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.pathfinder.PathType;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
+import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
+import net.neoforged.neoforge.fluids.FluidInteractionRegistry.InteractionInformation;
 import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+
 
 
 import net.dries007.tfc.util.Helpers;
@@ -45,7 +53,7 @@ public class KubastfcaFluids {
     public static final Map<DefaultFluids, FluidHolder<BaseFlowingFluid>> DEFAULT_FLUIDS = Helpers.mapOf(DefaultFluids.class, fluid -> register(
             fluid.getId(),
             properties -> properties
-                    .block(TFCBlocks.SALT_WATER)
+                    .block(KubastfcaBlocks.DEFAULT_FLUIDS.get(fluid))
                     .bucket(KubastfcaItems.FLUID_BUCKETS.get(FluidId.asType(fluid))),
             waterLike()
                     .descriptionId("fluid.kubastfca." + fluid.getId())
