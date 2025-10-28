@@ -1,5 +1,9 @@
 package net.kuba807.kubastfca.common.block;
 
+import net.dries007.tfc.common.blockentities.QuernBlockEntity;
+import net.dries007.tfc.common.blockentities.TFCBlockEntities;
+import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.blocks.devices.QuernBlock;
 import net.kuba807.kubastfca.common.block.crop.Crop;
 
 
@@ -19,7 +23,9 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
@@ -39,7 +45,7 @@ public class KubastfcaBlocks {
     public static final Map<DefaultFluids, Id<LiquidBlock>> DEFAULT_FLUIDS = Helpers.mapOf(DefaultFluids.class, fluid ->
             registerNoItem("fluid/" + fluid.getId(), () -> new LiquidBlock(KubastfcaFluids.DEFAULT_FLUIDS.get(fluid).getSource(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()))
     );
-
+    public static final Id<Block> CERAMIC_BUTTER_CHURN = register("ceramic_butter_churn",() -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
 
 
 

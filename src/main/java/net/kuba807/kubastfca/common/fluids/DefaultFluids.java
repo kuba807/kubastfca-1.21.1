@@ -10,7 +10,8 @@ public enum DefaultFluids
 
 
 
-    SOUR_MILK(0xFFFFFBE8);
+    SOUR_MILK(0xFFFFFBE8),
+    HIBISCUS_TEA(0xFFDD3846);
 
     private final String id;
     private final int color;
