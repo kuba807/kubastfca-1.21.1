@@ -27,7 +27,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.kuba807.kubastfca.common.recipes.KubaRecipeSerializers;
 import net.kuba807.kubastfca.common.item.KubastfcaItems;
 import net.kuba807.kubastfca.common.block.KubastfcaBlocks;
-
+import net.kuba807.kubastfca.common.blockentities.KubastfcaBlockEntities;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(kubastfca.MODID)
@@ -89,6 +89,7 @@ public class kubastfca {
         KubastfcaBlocks.BLOCKS.register(modEventBus);
         KubastfcaFluids.FLUIDS.register(modEventBus);
         KubastfcaFluids.FLUID_TYPES.register(modEventBus);
+        KubastfcaBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         KubaRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
