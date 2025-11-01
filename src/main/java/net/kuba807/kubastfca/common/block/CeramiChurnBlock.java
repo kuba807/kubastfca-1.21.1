@@ -34,21 +34,22 @@ import static net.kuba807.kubastfca.common.blockentities.CeramicChurnBlockEntity
 
 public class CeramiChurnBlock extends DeviceBlock implements IHighlightHandler
 {
-    private static final VoxelShape BASE_SHAPE = box(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D);
+    private static final VoxelShape BASE_SHAPE = box(5.0D, 0.0D, 5.0D, 11.0D, 12.0D, 11.0D);
     private static final AABB BASE_AABB = BASE_SHAPE.bounds().inflate(0.01D);
 
-    private static final VoxelShape HANDSTONE_SHAPE = box(3.0D, 10.0D, 3.0D, 13.0D, 13.76D, 13.0D);
-    private static final AABB HANDSTONE_AABB = HANDSTONE_SHAPE.bounds().inflate(0.01D);
-    private static final Vec3 HANDSTONE_CENTER = HANDSTONE_SHAPE.bounds().getCenter();
+    //private static final VoxelShape HANDSTONE_SHAPE = box(7.0D, 10.0D, 7.0D, 8.0D, 16.0D, 8.0D);
+    //private static final AABB HANDSTONE_AABB = HANDSTONE_SHAPE.bounds().inflate(0.01D);
 
-    private static final VoxelShape HANDLE_SHAPE = box(4.34D, 13.76D, 4.34D, 5.36D, 16.24D, 5.36D);
+
+    private static final VoxelShape HANDLE_SHAPE = box(7.0D, 10.0D, 7.0D, 8.0D, 16.0D, 8.0D);
     private static final AABB HANDLE_AABB = HANDLE_SHAPE.bounds().inflate(0.01D);
+    private static final Vec3 HANDLE_SHAPE_CENTER = HANDLE_SHAPE.bounds().getCenter();
 
     private static final VoxelShape INPUT_SLOT_SHAPE = box(6.0D, 13.76D, 6.0D, 10.0D, 16.24D, 10.0D);
     private static final AABB INPUT_SLOT_AABB = INPUT_SLOT_SHAPE.bounds().inflate(0.01D);
 
-    private static final VoxelShape FULL_SHAPE = Shapes.join(Shapes.or(BASE_SHAPE, HANDSTONE_SHAPE, HANDLE_SHAPE), INPUT_SLOT_SHAPE, BooleanOp.ONLY_FIRST);
-    private static final VoxelShape COLLISION_FULL_SHAPE = Shapes.or(BASE_SHAPE, HANDSTONE_SHAPE);
+    private static final VoxelShape FULL_SHAPE = Shapes.join(Shapes.or(BASE_SHAPE,  HANDLE_SHAPE), INPUT_SLOT_SHAPE, BooleanOp.ONLY_FIRST);
+    private static final VoxelShape COLLISION_FULL_SHAPE = Shapes.or(BASE_SHAPE);
 
     private static SelectionPlace getPlayerSelection(BlockGetter level, BlockPos pos, Player player, BlockHitResult result)
     {
@@ -94,9 +95,9 @@ public class CeramiChurnBlock extends DeviceBlock implements IHighlightHandler
         if (level.getBlockEntity(pos) instanceof CeramicChurnBlockEntity ceramic_butter_churn)
         {
             final float rotationSpeed = ceramic_butter_churn.getRotationSpeed();
-            if (rotationSpeed != 0f && HANDSTONE_AABB.move(pos).contains(entity.position()) && !BASE_AABB.contains(entity.position()))
+            if (rotationSpeed != 0f && HANDLE_AABB.move(pos).contains(entity.position()) && !BASE_AABB.contains(entity.position()))
             {
-                Helpers.rotateEntity(level, entity, HANDSTONE_CENTER.add(pos.getX(), pos.getY(), pos.getZ()), -rotationSpeed * Constants.RAD_TO_DEG);
+                Helpers.rotateEntity(level, entity, HANDLE_SHAPE_CENTER.add(pos.getX(), pos.getY(), pos.getZ()), -rotationSpeed * Constants.RAD_TO_DEG);
             }
         }
     }
