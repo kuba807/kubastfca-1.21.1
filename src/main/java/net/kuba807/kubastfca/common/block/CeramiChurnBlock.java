@@ -6,6 +6,7 @@ import com.mojang.math.Constants;
 import net.dries007.tfc.client.IHighlightHandler;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
+import net.dries007.tfc.common.fluids.FluidHelpers;
 import net.dries007.tfc.util.Helpers;
 import net.kuba807.kubastfca.common.blockentities.CeramicChurnBlockEntity;
 import net.kuba807.kubastfca.common.blockentities.KubastfcaBlockEntities;
@@ -71,14 +72,23 @@ public class CeramiChurnBlock extends DeviceBlock implements IHighlightHandler
         return SelectionPlace.BASE;
     }
 
-    private static ItemInteractionResult insertOrExtract(Level level, CeramicChurnBlockEntity quern, IItemHandler inventory, Player player, ItemStack stack, int slot)
+    private static ItemInteractionResult insertOrExtract(Level level, CeramicChurnBlockEntity quern, IItemHandler inventory, Player player, ItemStack stack, int slot, InteractionHand hand,CeramicChurnBlockEntity ceramic_butter_churn)
     {
-        if (!stack.isEmpty())
+
+        if (!ceramic_butter_churn.isGrinding() && FluidHelpers.transferBetweenBlockEntityAndItem(stack, ceramic_butter_churn, player, hand))
         {
-            player.setItemInHand(InteractionHand.MAIN_HAND, inventory.insertItem(slot, stack, false));
-        }
-        quern.setAndUpdateSlots(slot);
-        quern.markForSync();
+            ceramic_butter_churn.setAndUpdateSlots(-1);
+            ceramic_butter_churn.markForSync();
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        };
+//
+      //  if (!stack.isEmpty())
+      //  {
+      //      player.setItemInHand(InteractionHand.MAIN_HAND, inventory.insertItem(slot, stack, false));
+      //  }
+      //  quern.setAndUpdateSlots(slot);
+      //  quern.markForSync();
+      //  return ItemInteractionResult.sidedSuccess(level.isClientSide);
         return ItemInteractionResult.sidedSuccess(level.isClientSide);
     }
 
@@ -114,8 +124,8 @@ public class CeramiChurnBlock extends DeviceBlock implements IHighlightHandler
             return switch (selection)
             {
                 case HANDLE -> attemptGrind(level, pos, ceramic_butter_churn);
-                case INPUT_SLOT -> insertOrExtract(level, ceramic_butter_churn, inventory, player, heldStack, SLOT_INPUT);
-                case BASE -> insertOrExtract(level, ceramic_butter_churn, inventory, player, ItemStack.EMPTY, SLOT_OUTPUT);
+                case INPUT_SLOT -> insertOrExtract(level, ceramic_butter_churn, inventory, player, heldStack, SLOT_INPUT,hand,ceramic_butter_churn);
+                case BASE -> insertOrExtract(level, ceramic_butter_churn, inventory, player, ItemStack.EMPTY, SLOT_OUTPUT,hand,ceramic_butter_churn);
             };
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;

@@ -1,7 +1,7 @@
 package net.kuba807.kubastfca.common.block.crop;
 
 import net.dries007.tfc.common.blockentities.CropBlockEntity;
-import net.dries007.tfc.common.blockentities.TFCBlockEntities;
+//import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.crop.DeadCropBlock;
 import net.dries007.tfc.common.blocks.crop.PickableCropBlock;
@@ -11,6 +11,8 @@ import net.dries007.tfc.common.items.Food;
 
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.climate.ClimateRange;
+import net.kuba807.kubastfca.common.blockentities.KubastfcaBlockEntities;
+import net.kuba807.kubastfca.common.blockentities.KubastfcaCropBlockEntity;
 import net.kuba807.kubastfca.util.climate.ClimateRanges;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
@@ -81,7 +83,7 @@ TEA(0.75f, -0.2f, -0.2f, 8); // Default, 8
 
 private static ExtendedProperties crop()
 {
-    return dead().blockEntity(TFCBlockEntities.CROP).serverTicks(CropBlockEntity::serverTick);
+    return dead().blockEntity(KubastfcaBlockEntities.CROP).serverTicks(KubastfcaCropBlockEntity::serverTick);
 }
 
 private static ExtendedProperties dead()

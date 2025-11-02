@@ -1,5 +1,9 @@
 {
-  "max_temperature": 32.0,
-  "min_hydration": 50,
-  "min_temperature": -9.0
+  "comment": "80,16",
+  "min_hydration": 80,
+  "max_hydration": 100,
+  "hydration_wiggle_range": 0,
+  "min_temperature": 16,
+  "max_temperature": 40,
+  "temperature_wiggle_range": 5
 }

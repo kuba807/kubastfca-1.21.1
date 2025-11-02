@@ -33,7 +33,7 @@ public final class KubastfcaBlockEntities {
     {
         return new Id<>(RegistrationHelpers.register(BLOCK_ENTITIES, name, factory, blocks));
     }
-
+    public static final Id<KubastfcaCropBlockEntity> CROP = register("crop", KubastfcaCropBlockEntity::new, KubastfcaBlocks.CROPS.values().stream());
 
 
     public record Id<T extends BlockEntity>(DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> holder)

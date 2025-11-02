@@ -1,21 +1,28 @@
 package net.kuba807.kubastfca.client;
 
+import net.dries007.tfc.client.IGhostBlockHandler;
 import net.dries007.tfc.client.extensions.FluidRendererExtension;
 import net.dries007.tfc.util.Helpers;
+import net.kuba807.kubastfca.common.block.KubastfcaBlocks;
 import net.kuba807.kubastfca.common.fluids.KubastfcaFluids;
 
 import net.kuba807.kubastfca.kubastfca;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.client.model.DynamicFluidContainerModel;
 
 import java.util.Objects;
+import java.util.function.Predicate;
 
 
 public class ClientEventHandler {
@@ -36,7 +43,22 @@ public class ClientEventHandler {
     }
 
 
+    @SuppressWarnings("deprecation")
+    public static void clientSetup(FMLClientSetupEvent event) {
+        final RenderType cutout = RenderType.cutout();
+        final RenderType cutoutMipped = RenderType.cutoutMipped();
+        final Predicate<RenderType> ghostBlock = rt -> rt == cutoutMipped || rt == Sheets.translucentCullBlockSheet();
 
+        KubastfcaBlocks.CROPS.values().forEach(reg -> {
+            if (reg.get() instanceof IGhostBlockHandler) {
+                ItemBlockRenderTypes.setRenderLayer(reg.get(), ghostBlock);
+            } else {
+                ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout);
+            }
+        });
+        KubastfcaBlocks.DEAD_CROPS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
+        KubastfcaBlocks.WILD_CROPS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
+    }
 
     public static void registerColorHandlerItems(RegisterColorHandlersEvent.Item event)
     {
