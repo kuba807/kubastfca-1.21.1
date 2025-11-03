@@ -26,13 +26,13 @@ public class KubastfcaCropBlockEntity extends TFCBlockEntity implements ICalenda
         crop.checkForCalendarUpdate();
     }
 
-   // public static void serverTickBottomPartOnly(Level level, BlockPos pos, BlockState state, KubastfcaCropBlockEntity crop)
-   // {
-   //     if (state.getValue(DoubleCropBlock.PART) == DoubleCropBlock.Part.BOTTOM)
-   //     {
-   //         crop.checkForCalendarUpdate();
-   //     }
-   // }
+  //  public static void serverTickBottomPartOnly(Level level, BlockPos pos, BlockState state, KubastfcaCropBlockEntity crop)
+  //  {
+  //      if (state.getValue(DoubleCropBlock.PART) == DoubleCropBlock.Part.BOTTOM)
+  //      {
+  //          crop.checkForCalendarUpdate();
+  //      }
+  //  }
 
     private float growth;
     private float nAbsorbed, pAbsorbed, kAbsorbed;
