@@ -45,6 +45,7 @@ public class ClientEventHandler {
 
     @SuppressWarnings("deprecation")
     public static void clientSetup(FMLClientSetupEvent event) {
+        //final RenderType solid = RenderType.solid();
         final RenderType cutout = RenderType.cutout();
         final RenderType cutoutMipped = RenderType.cutoutMipped();
         final Predicate<RenderType> ghostBlock = rt -> rt == cutoutMipped || rt == Sheets.translucentCullBlockSheet();

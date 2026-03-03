@@ -79,10 +79,10 @@ public final class CropHelpers
         // This whole rigamarole is because we need to use calendar ticks to sample climate, but cannot store calendar ticks as time stamps
         final long firstCalendarTick = calendar.getCalendarTickFromOffset(fromTick - calendar.getTicks());
         final long secondCalendarTick = calendar.getCalendarTickFromOffset(toTick - calendar.getTicks());
-        final float startTemperature = Climate.getTemperature(level, pos, calendar, firstCalendarTick);
-        final float endTemperature = Climate.getTemperature(level, pos, calendar, secondCalendarTick);
-        final int startHydration = FarmlandBlock.getHydration(level, sourcePos, firstCalendarTick);
-        final int endHydration = FarmlandBlock.getHydration(level, sourcePos, secondCalendarTick);
+        final float startTemperature = Climate.getInstantTemperature(level, pos, calendar, firstCalendarTick);
+        final float endTemperature = Climate.getInstantTemperature(level, pos, calendar, secondCalendarTick);
+        final int startHydration = FarmlandBlock.getInstantHydration(level, sourcePos, firstCalendarTick);
+        final int endHydration = FarmlandBlock.getInstantHydration(level, sourcePos, secondCalendarTick);
         final long tickDelta = toTick - fromTick;
 
         final ICropBlock cropBlock = (ICropBlock) state.getBlock();

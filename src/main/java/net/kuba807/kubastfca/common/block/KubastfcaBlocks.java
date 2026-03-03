@@ -34,20 +34,21 @@ import org.jetbrains.annotations.Nullable;
 
 //import net.dries007.tfc.util.registry.RegistrationHelpers;
 //import net.dries007.tfc.util.registry.RegistryHolder;
+import net.dries007.tfc.util.registry.RegistrationHelpers;
 
-import net.kuba807.kubastfca.util.registry.RegistrationHelpers;
+//import net.kuba807.kubastfca.util.registry.RegistrationHelpers;
 import net.kuba807.kubastfca.util.registry.RegistryHolder;
+
 import static net.kuba807.kubastfca.kubastfca.MODID;
 
 public class KubastfcaBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, MODID);
 
 
-
     public static final Map<DefaultFluids, Id<LiquidBlock>> DEFAULT_FLUIDS = Helpers.mapOf(DefaultFluids.class, fluid ->
             registerNoItem("fluid/" + fluid.getId(), () -> new LiquidBlock(KubastfcaFluids.DEFAULT_FLUIDS.get(fluid).getSource(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()))
     );
-    public static final Id<Block> CERAMIC_BUTTER_CHURN = register("ceramic_butter_churn",() ->new CeramiChurnBlock(ExtendedProperties.of().mapColor(MapColor.STONE).strength(0.5F, 2.0F).sound(SoundType.BASALT).noOcclusion().blockEntity(KubastfcaBlockEntities.CERAMIC_BUTTER_CHURN).ticks(CeramicChurnBlockEntity::serverTick, CeramicChurnBlockEntity::clientTick)));
+    public static final Id<Block> CERAMIC_BUTTER_CHURN = register("ceramic_butter_churn", () -> new CeramiChurnBlock(ExtendedProperties.of().mapColor(MapColor.STONE).strength(0.5F, 2.0F).sound(SoundType.BASALT).noOcclusion().blockEntity(KubastfcaBlockEntities.CERAMIC_BUTTER_CHURN).ticks(CeramicChurnBlockEntity::serverTick, CeramicChurnBlockEntity::clientTick)));
 
 
     public static final Map<Crop, Id<Block>> CROPS = Helpers.mapOf(Crop.class, crop ->
@@ -63,62 +64,56 @@ public class KubastfcaBlocks {
     );
 
 
-  // public static boolean always(BlockState state, BlockGetter level, BlockPos pos)
-  // {
-  //     return true;
-  // }
+    // public static boolean always(BlockState state, BlockGetter level, BlockPos pos)
+    // {
+    //     return true;
+    // }
 
-  // public static boolean never(BlockState state, BlockGetter level, BlockPos pos)
-  // {
-  //     return false;
-  // }
+    // public static boolean never(BlockState state, BlockGetter level, BlockPos pos)
+    // {
+    //     return false;
+    // }
 
-  // public static boolean neverEntity(BlockState state, BlockGetter world, BlockPos pos, EntityType<?> type)
-  // {
-  //     return false;
-  // }
+    // public static boolean neverEntity(BlockState state, BlockGetter world, BlockPos pos, EntityType<?> type)
+    // {
+    //     return false;
+    // }
 
 
-  // public static ToIntFunction<BlockState> alwaysLit()
-  // {
-  //     return s -> 15;
-  // }
+    // public static ToIntFunction<BlockState> alwaysLit()
+    // {
+    //     return s -> 15;
+    // }
 
-  // public static ToIntFunction<BlockState> lavaLoggedBlockEmission()
-  // {
+    // public static ToIntFunction<BlockState> lavaLoggedBlockEmission()
+    // {
     //    return state -> state.getValue(((IFluidLoggable) state.getBlock()).getFluidProperty()).is(Fluids.LAVA) ? 15 : 0;
     //}
 
-   // public static ToIntFunction<BlockState> litBlockEmission(int lightValue)
-   // {
-   //     return state -> state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
-   // }
-    private static <T extends Block> Id<T> registerNoItem(String name, Supplier<T> blockSupplier)
-    {
+    // public static ToIntFunction<BlockState> litBlockEmission(int lightValue)
+    // {
+    //     return state -> state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
+    // }
+    private static <T extends Block> Id<T> registerNoItem(String name, Supplier<T> blockSupplier) {
         return register(name, blockSupplier, (Function<T, ? extends BlockItem>) null);
     }
 
-    private static <T extends Block> Id<T> register(String name, Supplier<T> blockSupplier)
-    {
+    private static <T extends Block> Id<T> register(String name, Supplier<T> blockSupplier) {
         return register(name, blockSupplier, block -> new BlockItem(block, new Item.Properties()));
     }
 
-    private static <T extends Block> Id<T> register(String name, Supplier<T> blockSupplier, Item.Properties blockItemProperties)
-    {
+    private static <T extends Block> Id<T> register(String name, Supplier<T> blockSupplier, Item.Properties blockItemProperties) {
         return register(name, blockSupplier, block -> new BlockItem(block, blockItemProperties));
     }
 
-    private static <T extends Block> Id<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory)
-    {
+    private static <T extends Block> Id<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory) {
         return new Id<>(RegistrationHelpers.registerBlock(KubastfcaBlocks.BLOCKS, KubastfcaItems.ITEMS, name, blockSupplier, blockItemFactory));
     }
 
 
-    public record Id<T extends Block>(DeferredHolder<Block, T> holder) implements RegistryHolder<Block, T>, ItemLike
-    {
+    public record Id<T extends Block>(DeferredHolder<Block, T> holder) implements RegistryHolder<Block, T>, ItemLike {
         @Override
-        public Item asItem()
-        {
+        public Item asItem() {
             return get().asItem();
         }
     }

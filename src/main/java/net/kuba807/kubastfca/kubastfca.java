@@ -43,37 +43,33 @@ public class kubastfca {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
 
-
     // Creates a new food item with the id "kubastfca:example_id", nutrition 1 and saturation 2
 
     // Creates a creative tab with the id "kubastfca:example_tab" for the example item, that is placed after the combat tab
- public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("kubastfca", () -> CreativeModeTab.builder()
-         .title(Component.translatable("itemGroup.kubastfca")) //The language key for the title of your CreativeModeTab
-         .withTabsBefore(CreativeModeTabs.COMBAT)
-         .icon(() -> KubastfcaItems.COOKED_DUMPLING.get().getDefaultInstance())
-         .displayItems((parameters, output) -> {
-             output.accept(KubastfcaItems.COOKED_DUMPLING.get().getDefaultInstance());
-             output.accept(KubastfcaItems.RAW_DUMPLING.get().getDefaultInstance());
-             output.accept(KubastfcaItems.COOKED_POPPY_ROLL.get().getDefaultInstance());
-             output.accept(KubastfcaItems.RAW_POPPY_ROLL.get().getDefaultInstance());
-             output.accept(KubastfcaItems.COOKED_PASTA.get().getDefaultInstance());
-             output.accept(KubastfcaItems.RAW_PASTA.get().getDefaultInstance());
-             output.accept(KubastfcaItems.PEMMICAN.get().getDefaultInstance());
-             output.accept(KubastfcaItems.MEAT_WEK.get().getDefaultInstance());
-             output.accept(KubastfcaItems.UNSEALED_MEAT_WEK.get().getDefaultInstance());
-             output.accept(KubastfcaItems.MIX_WEK.get().getDefaultInstance());
-             output.accept(KubastfcaItems.UNSEALED_MIX_WEK.get().getDefaultInstance());
-             output.accept(KubastfcaItems.VEGGIE_WEK.get().getDefaultInstance());
-             output.accept(KubastfcaItems.UNSEALED_VEGGIE_WEK.get().getDefaultInstance());
-             output.accept(KubastfcaItems.DIRTY_JAR.get().getDefaultInstance());
-             output.accept(KubastfcaItems.COTTAGE_CHEESE.get().getDefaultInstance());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("kubastfca", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.kubastfca")) //The language key for the title of your CreativeModeTab
+            .withTabsBefore(CreativeModeTabs.COMBAT)
+            .icon(() -> KubastfcaItems.COOKED_DUMPLING.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                output.accept(KubastfcaItems.COOKED_DUMPLING.get().getDefaultInstance());
+                output.accept(KubastfcaItems.RAW_DUMPLING.get().getDefaultInstance());
+                output.accept(KubastfcaItems.COOKED_POPPY_ROLL.get().getDefaultInstance());
+                output.accept(KubastfcaItems.RAW_POPPY_ROLL.get().getDefaultInstance());
+                output.accept(KubastfcaItems.COOKED_PASTA.get().getDefaultInstance());
+                output.accept(KubastfcaItems.RAW_PASTA.get().getDefaultInstance());
+                output.accept(KubastfcaItems.PEMMICAN.get().getDefaultInstance());
+                output.accept(KubastfcaItems.MEAT_WEK.get().getDefaultInstance());
+                output.accept(KubastfcaItems.UNSEALED_MEAT_WEK.get().getDefaultInstance());
+                output.accept(KubastfcaItems.MIX_WEK.get().getDefaultInstance());
+                output.accept(KubastfcaItems.UNSEALED_MIX_WEK.get().getDefaultInstance());
+                output.accept(KubastfcaItems.VEGGIE_WEK.get().getDefaultInstance());
+                output.accept(KubastfcaItems.UNSEALED_VEGGIE_WEK.get().getDefaultInstance());
+                output.accept(KubastfcaItems.DIRTY_JAR.get().getDefaultInstance());
+                output.accept(KubastfcaItems.COTTAGE_CHEESE.get().getDefaultInstance());
 
 
-
-
-
-             // Add the example item to the tab. For your own tabs, this method is preferred over the event
-         }).build());
+                // Add the example item to the tab. For your own tabs, this method is preferred over the event
+            }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
@@ -84,9 +80,10 @@ public class kubastfca {
         // Register the Deferred Register to the mod event bus so blocks get registered
         //BLOCKS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
+        KubastfcaBlocks.BLOCKS.register(modEventBus);
         KubastfcaItems.ITEMS.register(modEventBus);
 
-        KubastfcaBlocks.BLOCKS.register(modEventBus);
+
         KubastfcaFluids.FLUIDS.register(modEventBus);
         KubastfcaFluids.FLUID_TYPES.register(modEventBus);
         KubastfcaBlockEntities.BLOCK_ENTITIES.register(modEventBus);
@@ -95,8 +92,7 @@ public class kubastfca {
         CREATIVE_MODE_TABS.register(modEventBus);
 
 
-        if (FMLEnvironment.dist == Dist.CLIENT)
-        {
+        if (FMLEnvironment.dist == Dist.CLIENT) {
             ClientEventHandler.init(modContainer, modEventBus);
 
         }
@@ -107,7 +103,7 @@ public class kubastfca {
         NeoForge.EVENT_BUS.register(this);
 
         // Register the item to a creative tab
-      //  modEventBus.addListener(this::addCreative);
+        //  modEventBus.addListener(this::addCreative);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);

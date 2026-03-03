@@ -2,6 +2,7 @@ package net.kuba807.kubastfca.common.block.crop;
 
 import net.dries007.tfc.common.blockentities.CropBlockEntity;
 //import net.dries007.tfc.common.blockentities.TFCBlockEntities;
+import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.crop.DeadCropBlock;
 import net.dries007.tfc.common.blocks.crop.PickableCropBlock;
@@ -25,11 +26,10 @@ import javax.annotation.Nullable;
 import java.util.Locale;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import  net.kuba807.kubastfca.common.item.KubastfcaItems;
 
-public enum Crop implements StringRepresentable
+import net.kuba807.kubastfca.common.item.KubastfcaItems;
 
-{
+public enum Crop implements StringRepresentable {
 
 //// Legumes
 //CASSAVA(-0.5f, 0.4f, 0.2f, 6), // Default, 6
@@ -38,11 +38,11 @@ public enum Crop implements StringRepresentable
 //PEANUT(-0.9f, 0.5f, 0.5f, 6), // Default, 6
 //SOYBEAN(-.80f, .60f, .30f, 7), // Default, 7
 //
-//// Grains
-TEA(0.75f, -0.2f, -0.2f, 8); // Default, 8
+    /// / Grains
+   TEA(0.75f, -0.2f, -0.2f, 8); // Default, 8
 //TEA(0.75f, -0.2f, -0.2f, 8); // Default, 8
 //OAT(1f, -.25f, -.35f, 8), // Default, 8
-//RYE(1f, -.35f, -.25f, 8), // Default, 8
+//RYE(1f, -.35f, -.25f, 8); // Default, 8
 //MAIZE(0.9f, -.25f, -.25f, 3, 3, false), // Double, 3 -> 3
 //WHEAT(1f, -.3f, -.3f, 8), // Default, 8
 //RICE(.4f, .3f, .3f, 8, true), // Default, Waterlogged, 8
@@ -70,7 +70,8 @@ TEA(0.75f, -0.2f, -0.2f, 8); // Default, 8
 //CANOLA(-0.3f, -0.6f, -1f, 6), // Default, 6
 //RADISH(-0.5f, -1f, -0.6f, 6), // Default, 6
 //
-//// Miscellaneous
+
+    /// / Miscellaneous
 //JUTE(0.6f, 0.4f, -0.4f, 3, 3, false), // Double, 3 -> 3
 //SUGARCANE(0.6f, -0.4f, 0.4f, 4, 4, false), // Double, 4 -> 4
 //PAPYRUS(0.5f, 0.5f, 0.5f, 3, 3, false);
@@ -80,39 +81,35 @@ TEA(0.75f, -0.2f, -0.2f, 8); // Default, 8
 //    return dead().blockEntity(TFCBlockEntities.CROP).serverTicks(CropBlockEntity::serverTickBottomPartOnly);
 //}
 //
+    private static ExtendedProperties crop() {
+        return dead().blockEntity(TFCBlockEntities.CROP).serverTicks(CropBlockEntity::serverTick);
+    }
 
-private static ExtendedProperties crop()
-{
-    return dead().blockEntity(KubastfcaBlockEntities.CROP).serverTicks(KubastfcaCropBlockEntity::serverTick);
-}
+    private static ExtendedProperties dead() {
+        return ExtendedProperties.of(MapColor.PLANT).noCollission().randomTicks().strength(0.4F).sound(SoundType.CROP).flammable(60, 30).pushReaction(PushReaction.DESTROY);
+    }
 
-private static ExtendedProperties dead()
-{
-    return ExtendedProperties.of(MapColor.PLANT).noCollission().randomTicks().strength(0.4F).sound(SoundType.CROP).flammable(60, 30).pushReaction(PushReaction.DESTROY);
-}
+    private final String serializedName;
+    private final float nitrogen;
+    private final float phosphorous;
+    private final float potassium;
+    private final Supplier<Block> factory;
+    private final Supplier<Block> deadFactory;
+    private final Supplier<Block> wildFactory;
 
-private final String serializedName;
-private final float nitrogen;
-private final float phosphorous;
-private final float potassium;
-private final Supplier<Block> factory;
-private final Supplier<Block> deadFactory;
-private final Supplier<Block> wildFactory;
-
-Crop(float nitrogen, float phosporous, float potassium, int singleBlockStages)
-{
-    this(nitrogen, phosporous, potassium, self -> KubaDefaultCropBlock.create(crop(), singleBlockStages, self), self -> new DeadCropBlock(dead(), self.getClimateRange()), self -> new WildCropBlock(dead().randomTicks()));
-}
+    Crop(float nitrogen, float phosphorus, float potassium, int singleBlockStages) {
+        this(nitrogen, phosphorus, potassium, self -> KubaDefaultCropBlock.create(crop(), singleBlockStages, self), self -> new DeadCropBlock(dead(), self.getClimateRange()), self -> new WildCropBlock(dead().randomTicks()));
+    }
 
 //Crop(float nitrogen, float phosporous, float potassium, int spreadingSingleBlockStages, Supplier<Supplier<? extends Block>> fruit)
 //{
 //    this(nitrogen, phosporous, potassium, self -> SpreadingCropBlock.create(crop(), spreadingSingleBlockStages, self, fruit), self -> new DeadCropBlock(dead(), self.getClimateRange()), self -> new WildSpreadingCropBlock(dead().randomTicks(), fruit));
 //}
 //
-Crop(float nitrogen, float phosporous, float potassium, int spreadingSingleBlockStages, @Nullable Supplier<Supplier<? extends Item>> fruit1, Supplier<Supplier<? extends Item>> fruit2)
-{
-    this(nitrogen, phosporous, potassium, self -> KubaPickableCropBlock.create(crop(), spreadingSingleBlockStages, self, fruit1, fruit2), self -> new DeadCropBlock(dead(), self.getClimateRange()), self -> new WildCropBlock(dead().randomTicks()));
-}
+//Crop(float nitrogen, float phosporous, float potassium, int spreadingSingleBlockStages, @Nullable Supplier<Supplier<? extends Item>> fruit1, Supplier<Supplier<? extends Item>> fruit2)
+//{
+//    this(nitrogen, phosporous, potassium, self -> KubaPickableCropBlock.create(crop(), spreadingSingleBlockStages, self, fruit1, fruit2), self -> new DeadCropBlock(dead(), self.getClimateRange()), self -> new WildCropBlock(dead().randomTicks()));
+//}
 
 //Crop(float nitrogen, float phosporous, float potassium, int floodedSingleBlockStages, boolean flooded)
 //{
@@ -147,56 +144,47 @@ Crop(float nitrogen, float phosporous, float potassium, int spreadingSingleBlock
 //}
 //
 
-Crop(float nitrogen, float phosporous, float potassium, Function<Crop, Block> factory, Function<Crop, Block> deadFactory, Function<Crop, Block> wildFactory)
-{
-    this.serializedName = name().toLowerCase(Locale.ROOT);
-    this.nitrogen = nitrogen;
-    this.phosphorous = phosporous;
-    this.potassium = potassium;
-    this.factory = () -> factory.apply(this);
-    this.deadFactory = () -> deadFactory.apply(this);
-    this.wildFactory = () -> wildFactory.apply(this);
-}
+    Crop(float nitrogen, float phosphorus, float potassium, Function<Crop, Block> factory, Function<Crop, Block> deadFactory, Function<Crop, Block> wildFactory) {
+        this.serializedName = name().toLowerCase(Locale.ROOT);
+        this.nitrogen = nitrogen;
+        this.phosphorous = phosphorus;
+        this.potassium = potassium;
+        this.factory = () -> factory.apply(this);
+        this.deadFactory = () -> deadFactory.apply(this);
+        this.wildFactory = () -> wildFactory.apply(this);
+    }
 
-@Override
-public String getSerializedName()
-{
-    return serializedName;
-}
+    @Override
+    public String getSerializedName() {
+        return serializedName;
+    }
 
-public Block create()
-{
-    return factory.get();
-}
+    public Block create() {
+        return factory.get();
+    }
 
-public Block createDead()
-{
-    return deadFactory.get();
-}
+    public Block createDead() {
+        return deadFactory.get();
+    }
 
-public Block createWild()
-{
-    return wildFactory.get();
-}
+    public Block createWild() {
+        return wildFactory.get();
+    }
 
-public float getNitrogen()
-{
-    return this.nitrogen;
-}
+    public float getNitrogen() {
+        return this.nitrogen;
+    }
 
-public float getPhosphorous()
-{
-    return this.phosphorous;
-}
+    public float getPhosphorous() {
+        return this.phosphorous;
+    }
 
-public float getPotassium()
-{
-    return this.potassium;
-}
+    public float getPotassium() {
+        return this.potassium;
+    }
 
-public Supplier<ClimateRange> getClimateRange()
-{
-    return ClimateRanges.CROPS.get(this);
-}
+    public Supplier<ClimateRange> getClimateRange() {
+        return ClimateRanges.CROPS.get(this);
+    }
 
 }

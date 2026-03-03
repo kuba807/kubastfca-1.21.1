@@ -14,9 +14,10 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import net.dries007.tfc.common.recipes.PotRecipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 
 public class DumplingPotRecipeCategory extends PotRecipeCategory<PotRecipe> {
-    public DumplingPotRecipeCategory(RecipeType<PotRecipe> type, IGuiHelper helper)
+    public DumplingPotRecipeCategory(RecipeType<RecipeHolder<PotRecipe>> type, IGuiHelper helper)
     {
         super(type, helper,175, 70);
     }

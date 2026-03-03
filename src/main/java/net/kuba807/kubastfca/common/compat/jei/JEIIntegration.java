@@ -53,29 +53,33 @@ import static net.kuba807.kubastfca.kubastfca.MODID;
 
 @JeiPlugin
 public class JEIIntegration implements IModPlugin{
-    private static <T> RecipeType<T> type(String name, Class<T> tClass)
+    private static <T extends Recipe<?>> RecipeType<RecipeHolder<T>> type(String name, Class<T> kind)
     {
-        return RecipeType.create(MODID, name, tClass);
+        return RecipeType.createRecipeHolderType(ResourceLocation.fromNamespaceAndPath(MODID, name));
     }
+    //private static <T> RecipeType<T> type(String name, Class<T> tClass)
+    //{
+    //    return RecipeType.create(MODID, name, tClass);
+   // }
     public static final IIngredientTypeWithSubtypes<Item, ItemStack> ITEM_STACK = VanillaTypes.ITEM_STACK;
     public static final IIngredientType<FluidStack> FLUID_STACK = NeoForgeTypes.FLUID_STACK;
 
-    public static final RecipeType<PotRecipe> DUMPLING_POT = type("dumpling_pot", PotRecipe.class);
+    public static final RecipeType<RecipeHolder<PotRecipe>> DUMPLING_POT = type("dumpling_pot", PotRecipe.class);
 
 
 
-    private static <C extends RecipeInput, T extends Recipe<C>> List<T> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type)
+    private static <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type)
     {
         return recipes(type, e -> true);
     }
 
-    private static <C extends RecipeInput, T extends Recipe<C>> List<T> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type, Predicate<T> filter)
+
+    private static <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type, Predicate<T> filter)
     {
         return ClientHelpers.getLevelOrThrow().getRecipeManager()
                 .getAllRecipesFor(type.get())
                 .stream()
-                .map(RecipeHolder::value)
-                .filter(filter)
+                .filter(holder -> filter.test(holder.value()))
                 .toList();
     }
 
@@ -114,6 +118,7 @@ public class JEIIntegration implements IModPlugin{
     @Override
     public void registerRecipes(IRecipeRegistration registry)
     {
+
         registry.addRecipes(DUMPLING_POT, recipes(TFCRecipeTypes.POT, recipe -> recipe.getSerializer() == KubaRecipeSerializers.DUMPLING_POT.get()));
 
     }
@@ -130,7 +135,8 @@ public class JEIIntegration implements IModPlugin{
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registry)
     {
-        IRecipeTransferHandlerHelper transferHelper = registry.getTransferHelper();
+        final IRecipeTransferHandlerHelper transferHelper = registry.getTransferHelper();
+
         registry.addRecipeTransferHandler(new FluidIgnoringRecipeTransferHandler<>(transferHelper, transferHelper.createUnregisteredRecipeTransferHandler(new PotTransferInfo(transferHelper, DUMPLING_POT))), DUMPLING_POT);
     }
 }

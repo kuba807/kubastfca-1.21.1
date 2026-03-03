@@ -81,9 +81,12 @@ public class KubastfcaItems {
             register("bucket/" + fluid.name(), () -> new BucketItem(fluid.fluid().get(), new Properties().craftRemainder(Items.BUCKET).stacksTo(1)))
     );
 
-    public static final Map<Crop, Object> CROP_SEEDS = Helpers.mapOf(Crop.class, crop ->
-            register("seeds/" + crop.name(), () -> new ItemNameBlockItem(KubastfcaBlocks.CROPS.get(crop).get(), new Properties()))
+
+    public static final Map<Crop, ItemId> CROP_SEEDS = Helpers.mapOf(Crop.class, crop ->
+            register("seeds/" + crop.name(), () -> new SeedItem(crop, KubastfcaBlocks.CROPS.get(crop).get(), new Properties()))
     );
+
+
 
     private static ItemId register(String name)
     {

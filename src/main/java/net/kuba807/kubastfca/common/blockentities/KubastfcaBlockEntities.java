@@ -1,7 +1,7 @@
 package net.kuba807.kubastfca.common.blockentities;
 
+import net.dries007.tfc.util.registry.RegistrationHelpers;
 import net.kuba807.kubastfca.common.block.KubastfcaBlocks;
-import net.kuba807.kubastfca.util.registry.RegistrationHelpers;
 import net.kuba807.kubastfca.util.registry.RegistryHolder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
