@@ -4,7 +4,7 @@ import net.dries007.tfc.common.blockentities.QuernBlockEntity;
 import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.QuernBlock;
-import net.kuba807.kubastfca.common.block.crop.Crop;
+//import net.kuba807.kubastfca.common.block.crop.Crop;
 
 
 import net.dries007.tfc.util.Helpers;
@@ -50,7 +50,7 @@ public class KubastfcaBlocks {
     );
     public static final Id<Block> CERAMIC_BUTTER_CHURN = register("ceramic_butter_churn", () -> new CeramiChurnBlock(ExtendedProperties.of().mapColor(MapColor.STONE).strength(0.5F, 2.0F).sound(SoundType.BASALT).noOcclusion().blockEntity(KubastfcaBlockEntities.CERAMIC_BUTTER_CHURN).ticks(CeramicChurnBlockEntity::serverTick, CeramicChurnBlockEntity::clientTick)));
 
-
+/*
     public static final Map<Crop, Id<Block>> CROPS = Helpers.mapOf(Crop.class, crop ->
             registerNoItem("crop/" + crop.name(), crop::create)
     );
@@ -62,7 +62,7 @@ public class KubastfcaBlocks {
     public static final Map<Crop, Id<Block>> WILD_CROPS = Helpers.mapOf(Crop.class, crop ->
             register("wild_crop/" + crop.name(), crop::createWild)
     );
-
+*/
 
     // public static boolean always(BlockState state, BlockGetter level, BlockPos pos)
     // {

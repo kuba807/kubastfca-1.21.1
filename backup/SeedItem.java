@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 import net.dries007.tfc.common.items.PlantableInfo;
 import net.dries007.tfc.util.climate.ClimateRange;
 import net.kuba807.kubastfca.util.climate.ClimateRanges;
-import net.kuba807.kubastfca.common.block.crop.Crop;
+//import net.kuba807.kubastfca.common.block.crop.Crop;
 
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.level.block.Block;

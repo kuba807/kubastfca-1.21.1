@@ -7,7 +7,7 @@
 package net.kuba807.kubastfca.common.blockentities;
 
 import net.dries007.tfc.common.blockentities.TFCBlockEntity;
-import net.kuba807.kubastfca.common.block.crop.ICropBlock;
+//import net.kuba807.kubastfca.common.block.crop.ICropBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;

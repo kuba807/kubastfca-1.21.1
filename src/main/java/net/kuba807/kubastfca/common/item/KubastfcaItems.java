@@ -4,7 +4,7 @@ import net.dries007.tfc.common.Lore;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.registry.RegistryHolder;
 import net.kuba807.kubastfca.common.block.KubastfcaBlocks;
-import net.kuba807.kubastfca.common.block.crop.Crop;
+//import net.kuba807.kubastfca.common.block.crop.Crop;
 import net.kuba807.kubastfca.common.fluids.FluidId;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -82,9 +82,9 @@ public class KubastfcaItems {
     );
 
 
-    public static final Map<Crop, ItemId> CROP_SEEDS = Helpers.mapOf(Crop.class, crop ->
-            register("seeds/" + crop.name(), () -> new SeedItem(crop, KubastfcaBlocks.CROPS.get(crop).get(), new Properties()))
-    );
+  //  public static final Map<Crop, ItemId> CROP_SEEDS = Helpers.mapOf(Crop.class, crop ->
+  //          register("seeds/" + crop.name(), () -> new SeedItem(crop, KubastfcaBlocks.CROPS.get(crop).get(), new Properties()))
+  //  );
 
 
 

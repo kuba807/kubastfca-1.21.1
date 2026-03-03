@@ -49,7 +49,7 @@ public class ClientEventHandler {
         final RenderType cutout = RenderType.cutout();
         final RenderType cutoutMipped = RenderType.cutoutMipped();
         final Predicate<RenderType> ghostBlock = rt -> rt == cutoutMipped || rt == Sheets.translucentCullBlockSheet();
-
+/*
         KubastfcaBlocks.CROPS.values().forEach(reg -> {
             if (reg.get() instanceof IGhostBlockHandler) {
                 ItemBlockRenderTypes.setRenderLayer(reg.get(), ghostBlock);
@@ -59,7 +59,8 @@ public class ClientEventHandler {
         });
         KubastfcaBlocks.DEAD_CROPS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
         KubastfcaBlocks.WILD_CROPS.values().forEach(reg -> ItemBlockRenderTypes.setRenderLayer(reg.get(), cutout));
-    }
+
+*/    }
 
     public static void registerColorHandlerItems(RegisterColorHandlersEvent.Item event)
     {
