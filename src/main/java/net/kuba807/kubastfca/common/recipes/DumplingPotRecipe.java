@@ -3,9 +3,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import com.mojang.serialization.MapCodec;
+import net.dries007.tfc.common.TFCTags;
+import net.dries007.tfc.common.blockentities.IPotInventory;
 import net.dries007.tfc.common.recipes.PotRecipe;
 import net.dries007.tfc.common.recipes.SoupPotRecipe;
-import net.dries007.tfc.common.recipes.TFCRecipeSerializers;
+import net.dries007.tfc.util.Helpers;
 import net.kuba807.kubastfca.common.item.KubastfcaItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -18,19 +20,13 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Nullable;
 
-import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;
-import net.dries007.tfc.common.component.Bowl;
-import net.dries007.tfc.common.component.TFCComponents;
 import net.dries007.tfc.common.component.food.FoodCapability;
 import net.dries007.tfc.common.component.food.FoodData;
 import net.dries007.tfc.common.component.food.IFood;
 import net.dries007.tfc.common.component.food.Nutrient;
-import net.dries007.tfc.common.component.item.ItemListComponent;
 import net.dries007.tfc.common.fluids.TFCFluids;
-import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.common.recipes.outputs.PotOutput;
-import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.tooltip.BlockEntityTooltip;
 import net.dries007.tfc.util.tooltip.BlockEntityTooltips;
 
@@ -41,7 +37,7 @@ public class DumplingPotRecipe extends PotRecipe
 
     public static final PotOutput.OutputType OUTPUT_TYPE = (provider, nbt) -> {
         ItemStack stack = ItemStack.parseOptional(provider, nbt.getCompound("item"));
-        return new SoupOutput(stack);
+        return new BoilingOutput(stack);
     };
 
     public static final int SOUP_HUNGER_VALUE = 4;
@@ -52,8 +48,8 @@ public class DumplingPotRecipe extends PotRecipe
         super(base);
     }
 
-    @Override
-    public PotOutput getOutput(PotBlockEntity.PotInventory inventory)
+   @Override
+    public PotOutput getOutput(IPotInventory inventory)
     {
         inventory.clearFluid();
         int ingredientCount = 0;
@@ -61,7 +57,7 @@ public class DumplingPotRecipe extends PotRecipe
         float[] nutrition = new float[Nutrient.TOTAL];
         ItemStack soupStack = ItemStack.EMPTY;
         final List<ItemStack> itemIngredients = new ArrayList<>();
-        for (int i = PotBlockEntity.SLOT_EXTRA_INPUT_START; i <= PotBlockEntity.SLOT_EXTRA_INPUT_END; i++)
+        for (int i = inventory.inputStart(); i <= inventory.inputEnd(); i++)
         {
             final ItemStack stack = inventory.getStackInSlot(i);
             final @Nullable IFood food = FoodCapability.get(stack);
@@ -85,8 +81,9 @@ public class DumplingPotRecipe extends PotRecipe
         }
         if (ingredientCount > 0)
         {
-            water /= ingredientCount; saturation =(saturation/ ingredientCount)+1;
-            float maxNutrientValue = 0;
+            water = water/ingredientCount;
+            saturation =(saturation/ ingredientCount)+1;
+           // float maxNutrientValue = 0;
             nutrition[0]=nutrition[0]+ingredientCount;
             for (Nutrient nutrient : Nutrient.VALUES)
             {
@@ -100,7 +97,7 @@ public class DumplingPotRecipe extends PotRecipe
                     new FoodData(SOUP_HUNGER_VALUE, water, saturation, 0, nutrition, SOUP_DECAY_MODIFIER));
         }
 
-        return new SoupOutput(soupStack);
+        return new BoilingOutput(soupStack);
     }
 
     @Override
@@ -109,7 +106,7 @@ public class DumplingPotRecipe extends PotRecipe
         return KubaRecipeSerializers.DUMPLING_POT.get();
     }
 
-    public record SoupOutput(ItemStack stack) implements PotOutput
+    public record BoilingOutput(ItemStack stack) implements PotOutput
     {
         @Override
         public boolean isEmpty()
@@ -117,14 +114,15 @@ public class DumplingPotRecipe extends PotRecipe
             return stack.isEmpty();
         }
 
-        @Override
+      //  @Override
         public ItemInteractionResult onInteract(PotBlockEntity entity, Player player, ItemStack clickedWith)
         {
-            if ( !stack.isEmpty())
+            if (Helpers.isItem(clickedWith.getItem(), TFCTags.Items.SOUP_BOWLS) && !stack.isEmpty())
             {
                 ItemHandlerHelper.giveItemToPlayer(player, stack.split(1));
                 return ItemInteractionResult.sidedSuccess(player.level().isClientSide);
-        } return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
         @Override

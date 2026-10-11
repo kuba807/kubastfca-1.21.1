@@ -36,7 +36,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
-
+import mezz.jei.api.recipe.RecipeType;
 
 import net.kuba807.kubastfca.kubastfca;
 
@@ -53,29 +53,28 @@ import static net.kuba807.kubastfca.kubastfca.MODID;
 
 @JeiPlugin
 public class JEIIntegration implements IModPlugin{
-    private static <T> RecipeType<T> type(String name, Class<T> tClass)
-    {
-        return RecipeType.create(MODID, name, tClass);
-    }
+    private static <T extends Recipe<?>> RecipeType<RecipeHolder<T>> type(String name, Class<T> kind)
+  {
+      return RecipeType.createRecipeHolderType(ResourceLocation.fromNamespaceAndPath(kubastfca.MODID, name));
+  }
     public static final IIngredientTypeWithSubtypes<Item, ItemStack> ITEM_STACK = VanillaTypes.ITEM_STACK;
     public static final IIngredientType<FluidStack> FLUID_STACK = NeoForgeTypes.FLUID_STACK;
 
-    public static final RecipeType<PotRecipe> DUMPLING_POT = type("dumpling_pot", PotRecipe.class);
+    public static final RecipeType<RecipeHolder<PotRecipe>> DUMPLING_POT = type("dumpling_pot", PotRecipe.class);
 
 
 
-    private static <C extends RecipeInput, T extends Recipe<C>> List<T> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type)
+    private static <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type)
     {
         return recipes(type, e -> true);
     }
 
-    private static <C extends RecipeInput, T extends Recipe<C>> List<T> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type, Predicate<T> filter)
+    private static <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> recipes(Supplier<net.minecraft.world.item.crafting.RecipeType<T>> type, Predicate<T> filter)
     {
         return ClientHelpers.getLevelOrThrow().getRecipeManager()
                 .getAllRecipesFor(type.get())
                 .stream()
-                .map(RecipeHolder::value)
-                .filter(filter)
+                .filter(holder -> filter.test(holder.value()))
                 .toList();
     }
 
@@ -84,10 +83,10 @@ public class JEIIntegration implements IModPlugin{
         Helpers.allItems(tag).forEach(item -> registry.addRecipeCatalyst(new ItemStack(item), recipeType));
     }
 
-    private static void addRecipeCatalyst(IRecipeCatalystRegistration registry, Wood.BlockType wood, RecipeType<?> recipeType)
-    {
-        TFCBlocks.WOODS.values().stream().map(map -> map.get(wood)).forEach(i -> registry.addRecipeCatalyst(new ItemStack(i.get()), recipeType));
-    }
+//    private static void addRecipeCatalyst(IRecipeCatalystRegistration registry, Wood.BlockType wood, RecipeType<?> recipeType)
+//    {
+//        TFCBlocks.WOODS.values().stream().map(map -> map.get(wood)).forEach(i -> registry.addRecipeCatalyst(new ItemStack(i.get()), recipeType));
+//    }
 
 
     @Override

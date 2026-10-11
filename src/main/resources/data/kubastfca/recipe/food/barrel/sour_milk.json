@@ -3,7 +3,12 @@
   "duration": 96000,
   "input_fluid": {
     "amount": 1000,
-    "fluid": "minecraft:milk"
+    "tag": "firmalife:milks"
+  },
+  "input_item": {
+
+    "count": 1,
+    "item": "minecraft:stick"
   },
   "output_fluid": {
     "amount": 250,

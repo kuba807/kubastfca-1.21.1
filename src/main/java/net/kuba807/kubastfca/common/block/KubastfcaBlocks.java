@@ -8,7 +8,6 @@ import net.kuba807.kubastfca.common.block.crop.Crop;
 
 
 import net.dries007.tfc.util.Helpers;
-import net.kuba807.kubastfca.common.blockentities.CeramicChurnBlockEntity;
 import net.kuba807.kubastfca.common.blockentities.KubastfcaBlockEntities;
 import net.kuba807.kubastfca.common.fluids.KubastfcaFluids;
 import net.kuba807.kubastfca.common.fluids.DefaultFluids;
@@ -47,7 +46,6 @@ public class KubastfcaBlocks {
     public static final Map<DefaultFluids, Id<LiquidBlock>> DEFAULT_FLUIDS = Helpers.mapOf(DefaultFluids.class, fluid ->
             registerNoItem("fluid/" + fluid.getId(), () -> new LiquidBlock(KubastfcaFluids.DEFAULT_FLUIDS.get(fluid).getSource(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).noLootTable()))
     );
-    public static final Id<Block> CERAMIC_BUTTER_CHURN = register("ceramic_butter_churn",() ->new CeramiChurnBlock(ExtendedProperties.of().mapColor(MapColor.STONE).strength(0.5F, 2.0F).sound(SoundType.BASALT).noOcclusion().blockEntity(KubastfcaBlockEntities.CERAMIC_BUTTER_CHURN).ticks(CeramicChurnBlockEntity::serverTick, CeramicChurnBlockEntity::clientTick)));
 
 
     public static final Map<Crop, Id<Block>> CROPS = Helpers.mapOf(Crop.class, crop ->

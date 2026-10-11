@@ -7,10 +7,10 @@ plugins {
     id 'idea'
 }
 String mc_version ="1.21.1"
-String neoForgeVersion = "21.1.197"
 String parchmentVersion  = "2024.11.17"
 String parchmentMinecraftVersion = "1.21.1"
-String tfc_version ="7150812"
+String tfc_version ="8831715"
+String firmalife_version ="8994973"
 
 // Dependency versions
 String emiVersion = "1.1.22+1.21.1"
@@ -162,6 +162,7 @@ dependencies {
 
     //TerraFirmaCraft
     implementation("curse.maven:tfc-302973:${tfc_version}")
+  //  implementation("curse.maven:firmalife-453394:${firmalife_version}")
 
 //
  //   // Jade / The One Probe
